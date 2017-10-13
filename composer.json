@@ -1,6 +1,6 @@
 {
   "name": "avto-dev/b2b-api-php-laravel",
-  "description": "Laravel package for a working with package avto-dev/b2b-api-php",
+  "description": "Laravel package for a working with avto-dev/b2b-api-php",
   "keywords": ["laravel", "b2b", "service", "avto-dev"],
   "type": "library",
   "license": "MIT",
