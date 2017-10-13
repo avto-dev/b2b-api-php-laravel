@@ -1,0 +1,50 @@
+{
+  "name": "avto-dev/b2b-api-php-laravel",
+  "description": "Laravel package for a working with package avto-dev/b2b-api-php",
+  "keywords": ["laravel", "b2b", "service", "avto-dev"],
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Avto Develop",
+      "homepage": "https://github.com/avto-dev"
+    }
+  ],
+  "require": {
+    "php": "^5.6 || ^7.0",
+    "avto-dev/b2b-api-php": "~2.0",
+    "laravel/framework": "~5.4"
+  },
+  "require-dev": {
+    "laravel/laravel": "~5.4",
+    "mockery/mockery": "0.9.*",
+    "phpunit/phpunit": "^5.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "AvtoDev\\B2BApiLaravel\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "AvtoDev\\B2BApiLaravel\\Tests\\": "tests"
+    }
+  },
+  "support": {
+    "issues": "https://github.com/avto-dev/b2b-api-php-laravel/issues",
+    "source": "https://github.com/avto-dev/b2b-api-php-laravel"
+  },
+  "scripts": {
+    "test": "./vendor/bin/phpunit"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "AvtoDev\\B2BApiLaravel\\B2BApiServiceProvider"
+      ]
+    }
+  }
+}
