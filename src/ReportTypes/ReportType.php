@@ -2,8 +2,8 @@
 
 namespace AvtoDev\B2BApiLaravel\ReportTypes;
 
-use Illuminate\Support\Str;
 use Traversable;
+use Illuminate\Support\Str;
 
 /**
  * Class ReportType.
@@ -44,6 +44,16 @@ class ReportType implements ReportTypeInterface
     }
 
     /**
+     * При попытке преобразовать объект в строку - вернется значение его UID-а.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->uid;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configure($input)
@@ -71,19 +81,9 @@ class ReportType implements ReportTypeInterface
                         break;
                 }
             }
-        } elseif (is_string($input) && !empty($input)) {
+        } elseif (is_string($input) && ! empty($input)) {
             $this->setUid($input);
         }
-    }
-
-    /**
-     * При попытке преобразовать объект в строку - вернется значение его UID-а.
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return (string) $this->uid;
     }
 
     /**
@@ -122,7 +122,7 @@ class ReportType implements ReportTypeInterface
         $this->uid = is_null($uid)
             ? null
             : (
-            !empty($uid)
+            ! empty($uid)
                 ? trim((string) $uid)
                 : null
             );
@@ -146,7 +146,7 @@ class ReportType implements ReportTypeInterface
         $this->description = is_null($description)
             ? null
             : (
-            !empty($description)
+            ! empty($description)
                 ? trim((string) $description)
                 : null
             );
@@ -170,7 +170,7 @@ class ReportType implements ReportTypeInterface
         $this->name = is_null($name)
             ? null
             : (
-            !empty($name)
+            ! empty($name)
                 ? trim((string) $name)
                 : null
             );

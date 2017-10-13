@@ -2,12 +2,12 @@
 
 namespace AvtoDev\B2BApiLaravel\Facades;
 
+use Illuminate\Support\Facades\Facade;
+use AvtoDev\B2BApiLaravel\B2BApiService;
 use AvtoDev\B2BApi\References\QueryTypes;
+use AvtoDev\B2BApi\Clients\v1\Client as B2BApiClient;
 use AvtoDev\B2BApi\Responses\DataTypes\Report\ReportData;
 use AvtoDev\B2BApi\Responses\DataTypes\Report\ReportStatusData;
-use AvtoDev\B2BApiLaravel\B2BApiService;
-use Illuminate\Support\Facades\Facade;
-use AvtoDev\B2BApi\Clients\v1\Client as B2BApiClient;
 
 /**
  * Class B2BApiServiceFacade.

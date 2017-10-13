@@ -2,11 +2,11 @@
 
 namespace AvtoDev\B2BApiLaravel\Tests\ReportTypes;
 
-use AvtoDev\B2BApiLaravel\ReportTypes\ReportType;
-use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypeInterface;
-use AvtoDev\B2BApiLaravel\Tests\AbstractUnitTestCase;
-use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
+use Illuminate\Contracts\Support\Arrayable;
+use AvtoDev\B2BApiLaravel\ReportTypes\ReportType;
+use AvtoDev\B2BApiLaravel\Tests\AbstractUnitTestCase;
+use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypeInterface;
 
 /**
  * Class ReportTypeTest.
@@ -17,6 +17,26 @@ class ReportTypeTest extends AbstractUnitTestCase
      * @var ReportType
      */
     protected $instance;
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+
+        $this->instance = new ReportType;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function tearDown()
+    {
+        unset($this->instance);
+
+        parent::tearDown();
+    }
 
     /**
      * Тест наследований класса.
@@ -130,25 +150,5 @@ class ReportTypeTest extends AbstractUnitTestCase
 
         $this->assertJson($json = $this->instance->toJson());
         $this->assertEquals($array, json_decode($json, true));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function setUp()
-    {
-        parent::setUp();
-
-        $this->instance = new ReportType;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function tearDown()
-    {
-        unset($this->instance);
-
-        parent::tearDown();
     }
 }

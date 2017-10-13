@@ -3,7 +3,7 @@
 namespace AvtoDev\B2BApiLaravel\Traits;
 
 /**
- * Trait InstanceableTrait
+ * Trait InstanceableTrait.
  */
 trait InstanceableTrait
 {

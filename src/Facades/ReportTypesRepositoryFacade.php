@@ -2,9 +2,9 @@
 
 namespace AvtoDev\B2BApiLaravel\Facades;
 
+use Illuminate\Support\Facades\Facade;
 use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypeInterface;
 use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypesRepository;
-use Illuminate\Support\Facades\Facade;
 
 /**
  * Class ReportTypesRepositoryFacade.

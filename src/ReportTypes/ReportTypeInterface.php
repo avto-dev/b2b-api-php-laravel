@@ -3,8 +3,8 @@
 namespace AvtoDev\B2BApiLaravel\ReportTypes;
 
 use Traversable;
-use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
+use Illuminate\Contracts\Support\Arrayable;
 
 /**
  * Interface ReportTypeInterface.

@@ -2,11 +2,11 @@
 
 namespace AvtoDev\B2BApiLaravel\Tests;
 
-use AvtoDev\B2BApiLaravel\B2BApiServiceProvider;
-use Illuminate\Contracts\Config\Repository as ConfigRepository;
-use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Application;
+use Illuminate\Contracts\Console\Kernel;
+use AvtoDev\B2BApiLaravel\B2BApiServiceProvider;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Contracts\Config\Repository as ConfigRepository;
 
 /**
  * Class AbstractUnitTestCase.

@@ -3,13 +3,13 @@
 namespace AvtoDev\B2BApiLaravel\Tests;
 
 use AvtoDev\B2BApiLaravel\B2BApiService;
+use AvtoDev\B2BApiLaravel\B2BApiServiceProvider;
 use AvtoDev\B2BApiLaravel\Events\AfterRequestSending;
 use AvtoDev\B2BApiLaravel\Events\BeforeRequestSending;
 use AvtoDev\B2BApiLaravel\Facades\B2BApiServiceFacade;
-use AvtoDev\B2BApiLaravel\B2BApiServiceProvider;
-use AvtoDev\B2BApiLaravel\Facades\ReportTypesRepositoryFacade;
 use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypeInterface;
 use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypesRepository;
+use AvtoDev\B2BApiLaravel\Facades\ReportTypesRepositoryFacade;
 
 /**
  * Class B2BApiServiceProviderTest.
@@ -119,24 +119,3 @@ class B2BApiServiceProviderTest extends AbstractUnitTestCase
         $service->client()->dev()->ping();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

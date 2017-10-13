@@ -2,13 +2,13 @@
 
 namespace AvtoDev\B2BApiLaravel;
 
+use Illuminate\Foundation\Application;
+use Psr\Http\Message\ResponseInterface;
 use AvtoDev\B2BApiLaravel\Events\AfterRequestSending;
 use AvtoDev\B2BApiLaravel\Events\BeforeRequestSending;
 use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypesRepository;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
-use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class B2BApiServiceProvider.
@@ -38,20 +38,6 @@ class B2BApiServiceProvider extends IlluminateServiceProvider
     }
 
     /**
-     * Initialize configs.
-     *
-     * @return void
-     */
-    protected function initializeConfigs()
-    {
-        $this->mergeConfigFrom($config_path = static::getConfigFilePath(), static::getConfigRootKeyName());
-
-        $this->publishes([
-            realpath($config_path) => config_path(basename($config_path)),
-        ], 'config');
-    }
-
-    /**
      * Возвращает путь до файла-конфигурации пакета.
      *
      * @return string
@@ -69,6 +55,20 @@ class B2BApiServiceProvider extends IlluminateServiceProvider
     public static function getConfigRootKeyName()
     {
         return basename(static::getConfigFilePath(), '.php'); // 'b2b-api-client'
+    }
+
+    /**
+     * Initialize configs.
+     *
+     * @return void
+     */
+    protected function initializeConfigs()
+    {
+        $this->mergeConfigFrom($config_path = static::getConfigFilePath(), static::getConfigRootKeyName());
+
+        $this->publishes([
+            realpath($config_path) => config_path(basename($config_path)),
+        ], 'config');
     }
 
     /**

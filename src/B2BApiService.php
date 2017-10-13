@@ -2,19 +2,19 @@
 
 namespace AvtoDev\B2BApiLaravel;
 
-use AvtoDev\B2BApi\Clients\v1\Client;
-use AvtoDev\B2BApi\Exceptions\B2BApiException;
-use AvtoDev\B2BApi\Exceptions\B2BApiInvalidArgumentException;
-use AvtoDev\B2BApi\References\QueryTypes;
-use AvtoDev\B2BApi\Responses\DataTypes\Report\ReportData;
-use AvtoDev\B2BApi\Responses\DataTypes\Report\ReportStatusData;
 use AvtoDev\B2BApi\Tokens\AuthToken;
-use AvtoDev\B2BApiLaravel\Exceptions\B2BApiServiceException;
-use AvtoDev\B2BApiLaravel\Exceptions\InvalidReportTypeException;
-use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypeInterface;
-use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypesRepository;
-use AvtoDev\B2BApiLaravel\Traits\InstanceableTrait;
+use AvtoDev\B2BApi\Clients\v1\Client;
 use Illuminate\Foundation\Application;
+use AvtoDev\B2BApi\References\QueryTypes;
+use AvtoDev\B2BApi\Exceptions\B2BApiException;
+use AvtoDev\B2BApiLaravel\Traits\InstanceableTrait;
+use AvtoDev\B2BApi\Responses\DataTypes\Report\ReportData;
+use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypeInterface;
+use AvtoDev\B2BApiLaravel\Exceptions\B2BApiServiceException;
+use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypesRepository;
+use AvtoDev\B2BApi\Exceptions\B2BApiInvalidArgumentException;
+use AvtoDev\B2BApi\Responses\DataTypes\Report\ReportStatusData;
+use AvtoDev\B2BApiLaravel\Exceptions\InvalidReportTypeException;
 
 /**
  * Class B2BApiService.
@@ -122,10 +122,11 @@ class B2BApiService
      * @param string                     $query_id    Идентификатор запрашиваемой сущности (VIN, GRZ и так далее)
      * @param ReportTypeInterface|string $report_type UID типа отчета либо его имя
      *
-     * @return ReportStatusData
      * @throws B2BApiServiceException
      * @throws B2BApiInvalidArgumentException
      * @throws B2BApiException
+     *
+     * @return ReportStatusData
      */
     public function makeReport($query_type, $query_id, $report_type)
     {
@@ -163,14 +164,15 @@ class B2BApiService
      *
      * @param ReportTypeInterface|string $input
      *
-     * @return null|string
      * @throws InvalidReportTypeException
+     *
+     * @return null|string
      */
     public function getReportTypeUid($input)
     {
         if ($input instanceof ReportTypeInterface) {
             return $input->getUid();
-        } elseif (is_string($input) && !empty($input)) {
+        } elseif (is_string($input) && ! empty($input)) {
             $report_type = $this->report_types_repository->getByName($input);
             if ($report_type instanceof ReportTypeInterface) {
                 return $report_type->getUid();
@@ -190,9 +192,10 @@ class B2BApiService
      *
      * @param string $report_uid UID отчета
      *
-     * @return ReportData
      * @throws B2BApiServiceException
      * @throws B2BApiException
+     *
+     * @return ReportData
      */
     public function getReport($report_uid)
     {
@@ -210,9 +213,10 @@ class B2BApiService
      *
      * @param string $report_uid UID отчета
      *
-     * @return ReportStatusData
      * @throws B2BApiServiceException
      * @throws B2BApiException
+     *
+     * @return ReportStatusData
      */
     public function refreshReport($report_uid)
     {

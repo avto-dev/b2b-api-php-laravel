@@ -2,10 +2,10 @@
 
 namespace AvtoDev\B2BApiLaravel\ReportTypes;
 
-use AvtoDev\B2BApiLaravel\Traits\InstanceableTrait;
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Support\Collection;
 use Traversable;
+use Illuminate\Support\Collection;
+use Illuminate\Contracts\Support\Arrayable;
+use AvtoDev\B2BApiLaravel\Traits\InstanceableTrait;
 
 /**
  * Class ReportTypesRepository.
@@ -46,7 +46,7 @@ class ReportTypesRepository extends Collection
                 // Если элементом является объект, умеющим себя преобразовывать в массив - то преобразуем
                 $value = $value instanceof Arrayable ? $value->toArray() : $value;
 
-                if (is_scalar($value) && !empty($value)) {
+                if (is_scalar($value) && ! empty($value)) {
                     // Если влетела строка - то пушим в стек объект, у которого и имя, и UID равны этой строке
                     $this->push(new ReportType([
                         'name' => $value,
@@ -79,8 +79,6 @@ class ReportTypesRepository extends Collection
                 return $item;
             }
         }
-
-        return null;
     }
 
     /**
@@ -105,7 +103,7 @@ class ReportTypesRepository extends Collection
         $result = [];
 
         foreach ($this->all() as $item) {
-            if ($item instanceof ReportTypeInterface && !empty($name = $item->getName())) {
+            if ($item instanceof ReportTypeInterface && ! empty($name = $item->getName())) {
                 array_push($result, $name);
             }
         }
@@ -114,7 +112,7 @@ class ReportTypesRepository extends Collection
     }
 
     /**
-     * Возвращает объект типа отчета по его uid-у
+     * Возвращает объект типа отчета по его uid-у.
      *
      * @param string $report_type_uid
      *
@@ -127,8 +125,6 @@ class ReportTypesRepository extends Collection
                 return $item;
             }
         }
-
-        return null;
     }
 
     /**
@@ -153,7 +149,7 @@ class ReportTypesRepository extends Collection
         $result = [];
 
         foreach ($this->all() as $item) {
-            if ($item instanceof ReportTypeInterface && !empty($uid = $item->getUid())) {
+            if ($item instanceof ReportTypeInterface && ! empty($uid = $item->getUid())) {
                 array_push($result, $uid);
             }
         }

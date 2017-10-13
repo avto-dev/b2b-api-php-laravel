@@ -2,13 +2,12 @@
 
 namespace AvtoDev\B2BApiLaravel\Tests\ReportTypes;
 
-use AvtoDev\B2BApiLaravel\ReportTypes\ReportType;
-use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypeInterface;
-use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypesRepository;
-use AvtoDev\B2BApiLaravel\Tests\AbstractUnitTestCase;
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Support\Collection;
+use Illuminate\Contracts\Support\Jsonable;
+use Illuminate\Contracts\Support\Arrayable;
+use AvtoDev\B2BApiLaravel\ReportTypes\ReportType;
+use AvtoDev\B2BApiLaravel\Tests\AbstractUnitTestCase;
+use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypesRepository;
 
 /**
  * Class ReportTypeRepositoryTest.
@@ -19,6 +18,26 @@ class ReportTypeRepositoryTest extends AbstractUnitTestCase
      * @var ReportTypesRepository
      */
     protected $instance;
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+
+        $this->instance = new ReportTypesRepository;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function tearDown()
+    {
+        unset($this->instance);
+
+        parent::tearDown();
+    }
 
     /**
      * Тест наследований класса.
@@ -54,8 +73,8 @@ class ReportTypeRepositoryTest extends AbstractUnitTestCase
         $instance = new ReportTypesRepository([
             'uid_0',
             'uid_1' => ['uid_1.1'],
-            ['uid' => 'uid_2', 'name' => 'some name'],
-            'uid_3' => ['id' => 'uid_3.1', 'desc' => 'Description']
+            ['uid'  => 'uid_2', 'name' => 'some name'],
+            'uid_3' => ['id' => 'uid_3.1', 'desc' => 'Description'],
         ]);
         $this->assertTrue($instance->hasUid('uid_0'));
         $this->assertFalse($instance->hasUid('uid_1'));
@@ -102,7 +121,7 @@ class ReportTypeRepositoryTest extends AbstractUnitTestCase
     {
         $instance = new ReportTypesRepository([
             'name1' => ['uid' => 'uid1'],
-            ['uid' => 'uid2', 'name' => 'name2'],
+            ['uid'  => 'uid2', 'name' => 'name2'],
         ]);
 
         $array = $instance->toArray();
@@ -113,25 +132,5 @@ class ReportTypeRepositoryTest extends AbstractUnitTestCase
         $this->assertEquals('name2', $array[1]['name']);
 
         $this->assertJson($instance->toJson());
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function setUp()
-    {
-        parent::setUp();
-
-        $this->instance = new ReportTypesRepository;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function tearDown()
-    {
-        unset($this->instance);
-
-        parent::tearDown();
     }
 }

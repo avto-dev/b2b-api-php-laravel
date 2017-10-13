@@ -3,13 +3,13 @@
 namespace AvtoDev\B2BApiLaravel\Tests;
 
 use AvtoDev\B2BApi\Clients\v1\Client;
-use AvtoDev\B2BApi\Exceptions\B2BApiInvalidArgumentException;
-use AvtoDev\B2BApi\References\QueryTypes;
-use AvtoDev\B2BApi\Responses\DataTypes\Report\ReportData;
-use AvtoDev\B2BApi\Responses\DataTypes\Report\ReportStatusData;
 use AvtoDev\B2BApiLaravel\B2BApiService;
-use AvtoDev\B2BApiLaravel\Exceptions\InvalidReportTypeException;
+use AvtoDev\B2BApi\References\QueryTypes;
 use AvtoDev\B2BApiLaravel\ReportTypes\ReportType;
+use AvtoDev\B2BApi\Responses\DataTypes\Report\ReportData;
+use AvtoDev\B2BApi\Exceptions\B2BApiInvalidArgumentException;
+use AvtoDev\B2BApi\Responses\DataTypes\Report\ReportStatusData;
+use AvtoDev\B2BApiLaravel\Exceptions\InvalidReportTypeException;
 
 /**
  * Class B2BApiServiceTest.
