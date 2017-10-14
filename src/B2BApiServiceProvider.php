@@ -18,13 +18,6 @@ use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 class B2BApiServiceProvider extends IlluminateServiceProvider
 {
     /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = true;
-
-    /**
      * Register any application services.
      *
      * @return void
