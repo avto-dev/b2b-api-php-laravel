@@ -64,11 +64,7 @@ class B2BApiServiceProvider extends IlluminateServiceProvider
      */
     protected function initializeConfigs()
     {
-        $this->mergeConfigFrom($config_path = static::getConfigFilePath(), static::getConfigRootKeyName());
-
-        $this->publishes([
-            realpath($config_path) => config_path(basename($config_path)),
-        ], 'config');
+        $this->mergeConfigFrom(static::getConfigFilePath(), static::getConfigRootKeyName());
     }
 
     /**
@@ -95,6 +91,18 @@ class B2BApiServiceProvider extends IlluminateServiceProvider
     protected function config()
     {
         return $this->app->make('config');
+    }
+
+    /**
+     * Выполнение после-регистрационной загрузки сервисов.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->publishes([
+            realpath($config_path = static::getConfigFilePath()) => config_path(basename($config_path)),
+        ], 'config');
     }
 
     /**
