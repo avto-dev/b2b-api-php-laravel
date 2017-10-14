@@ -147,8 +147,8 @@ class B2BApiService
     /**
      * Генерирует новый токен авторизации на сервисе B2B API.
      *
-     * @param int         $age       Время жизни токена (unix-time, в секундах)
-     * @param int|null    $timestamp Временная метка (unix-time, начала жизни токена)
+     * @param int      $age       Время жизни токена (unix-time, в секундах)
+     * @param int|null $timestamp Временная метка (unix-time, начала жизни токена)
      *
      * @return string
      */
