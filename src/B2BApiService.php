@@ -147,14 +147,19 @@ class B2BApiService
     /**
      * Генерирует новый токен авторизации на сервисе B2B API.
      *
+     * @param int         $age       Время жизни токена (unix-time, в секундах)
+     * @param int|null    $timestamp Временная метка (unix-time, начала жизни токена)
+     *
      * @return string
      */
-    public function generateAuthToken()
+    public function generateAuthToken($age = 172800, $timestamp = null)
     {
         return $this->auth_token->generate(
             $this->config['username'],
             $this->config['password'],
-            $this->config['domain']
+            $this->config['domain'],
+            $age,
+            $timestamp
         );
     }
 

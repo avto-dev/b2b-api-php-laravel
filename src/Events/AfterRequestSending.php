@@ -10,17 +10,17 @@ use Psr\Http\Message\ResponseInterface;
 class AfterRequestSending extends AbstractRequestEvent
 {
     /**
-     * @var ResponseInterface|null
+     * @var ResponseInterface
      */
     public $response;
 
     /**
      * AfterRequestSending constructor.
      *
-     * @param ResponseInterface|null $response
+     * @param ResponseInterface $response
      */
-    public function __construct($response)
+    public function __construct(ResponseInterface $response)
     {
-        $this->response = $response instanceof ResponseInterface ? $response : null;
+        $this->response = $response;
     }
 }
