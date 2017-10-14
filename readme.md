@@ -2,7 +2,7 @@
   <img alt="laravel" src="https://habrastorage.org/webt/59/e1/c4/59e1c40b83e9d293787547.png" width="70" height="70" /> <img alt="logo" src="https://habrastorage.org/webt/59/df/45/59df45aa6c9cb971309988.png" width="70" height="70" />
 </p>
 
-# Сервис по работе с B2B API для Laravel 5
+# Сервис для работы с B2B API для Laravel 5
 
 ![Packagist](https://img.shields.io/packagist/v/avto-dev/b2b-api-php-laravel.svg?style=flat&maxAge=30)
 [![Build Status](https://scrutinizer-ci.com/g/avto-dev/b2b-api-php-laravel/badges/build.png?b=master)](https://scrutinizer-ci.com/g/avto-dev/b2b-api-php-laravel/build-status/master)
@@ -22,7 +22,7 @@
 Для установки данного пакета выполните в терминале следующую команду:
 
 ```shell
-$ composer require avto-dev/b2b-api-php-laravel "~2.0"
+$ composer require avto-dev/b2b-api-php-laravel "2.*"
 ```
 
 > Для этого необходим установленный `composer`. Для его установки перейдите по [данной ссылке][getcomposer].
