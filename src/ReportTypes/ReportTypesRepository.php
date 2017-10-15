@@ -4,7 +4,6 @@ namespace AvtoDev\B2BApiLaravel\ReportTypes;
 
 use Traversable;
 use Illuminate\Support\Collection;
-use Illuminate\Contracts\Support\Arrayable;
 use AvtoDev\B2BApiLaravel\Traits\InstanceableTrait;
 
 /**
@@ -17,13 +16,32 @@ class ReportTypesRepository extends Collection
     use InstanceableTrait;
 
     /**
+     * Стек объектов - типов отчетов.
+     *
+     * @var ReportType[]|array
+     */
+    protected $items = [];
+
+    /**
      * ReportTypesRepository constructor.
+     *
+     * @param array|Traversable|mixed $items
+     */
+    public function __construct($items = [])
+    {
+        $this->items = $this->toArrayOfReportTypes($items);
+    }
+
+    /**
+     * Преобразует входящее значение в массив объектов типа ReportType.
      *
      * Принимает на вход массив данных о типах отчетов, и в их соответствии формирует коллекцию данных. Формат
      * массивов может быть следующим:
      *
      * <code>
      * 'uid_0'
+     *
+     * 'uid_0,uid_1'
      *
      * [
      *   'uid_1',
@@ -37,32 +55,43 @@ class ReportTypesRepository extends Collection
      * ]
      * </code>
      *
-     * @param array|Traversable|mixed $items
+     * @param string|array|array[]|object $items
+     *
+     * @return ReportType[]|array
      */
-    public function __construct($items = [])
+    protected function toArrayOfReportTypes($items)
     {
-        if (is_array($items) || $items instanceof Traversable) {
-            foreach ($items as $key => $value) {
-                // Если элементом является объект, умеющим себя преобразовывать в массив - то преобразуем
-                $value = $value instanceof Arrayable ? $value->toArray() : $value;
+        $result = [];
 
-                if (is_scalar($value) && ! empty($value)) {
-                    // Если влетела строка - то пушим в стек объект, у которого и имя, и UID равны этой строке
-                    $this->push(new ReportType([
-                        'name' => $value,
-                        'uid'  => $value,
-                    ]));
-                } elseif (is_array($value) || $value instanceof Traversable) {
-                    // Если массив или перебираемое дерьмо - то работаем с ним
-                    $report_type = new ReportType;
-                    $report_type->setName($key);
-                    $report_type->configure($value);
-                    $this->push($report_type);
-                }
-            }
-        } else {
-            parent::__construct($items);
+        // Если влетело некоторое скалярное выражение - то преобразуем его в массив по разделителю
+        if (is_scalar($items) && ! empty($items)) {
+            $items = explode(',', trim((string) $items));
         }
+
+        // Если элементом является объект, умеющим себя преобразовывать в массив - то преобразуем
+        if (is_object($items) && !($items instanceof ReportType) && method_exists($items, 'toArray')) {
+            $items = $items->toArray();
+        }
+
+        foreach ((array) $items as $key => $value) {
+            if (is_scalar($value) && ! empty($value)) {
+                // Если влетела строка - то пушим в стек объект, у которого и имя, и UID равны этой строке
+                $report_type = new ReportType;
+                $report_type->setUid($value);
+                $report_type->setName($value);
+
+                array_push($result, $report_type);
+            } elseif (is_array($value) || $value instanceof Traversable) {
+                // Если массив или перебираемое дерьмо - то работаем с ним
+                $report_type = new ReportType;
+                $report_type->setName($key);
+                $report_type->configure($value);
+
+                array_push($result, $report_type);
+            }
+        }
+
+        return $result;
     }
 
     /**
@@ -155,5 +184,19 @@ class ReportTypesRepository extends Collection
         }
 
         return $result;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function offsetSet($key, $value)
+    {
+        if ($value instanceof ReportTypeInterface) {
+            if (is_null($key)) {
+                array_push($this->items, $value);
+            } else {
+                $this->items[$key] = $value;
+            }
+        }
     }
 }
