@@ -33,68 +33,6 @@ class ReportTypesRepository extends Collection
     }
 
     /**
-     * Преобразует входящее значение в массив объектов типа ReportType.
-     *
-     * Принимает на вход массив данных о типах отчетов, и в их соответствии формирует коллекцию данных. Формат
-     * массивов может быть следующим:
-     *
-     * <code>
-     * 'uid_0'
-     *
-     * 'uid_0,uid_1'
-     *
-     * [
-     *   'uid_1',
-     *   'uid_2',
-     * ]
-     *
-     * [
-     *   'uid_1' => ['uid' => 'report_1_uid', 'description' => 'Some 1 description'],
-     *   'uid_2' => ['id' => 'report_2_uid',  'desc' => 'Some 2 description'],
-     *  ['name' => 'some_3_name', 'id' => 'report_3_uid', 'description' => 'Some 3 description'],
-     * ]
-     * </code>
-     *
-     * @param string|array|array[]|object $items
-     *
-     * @return ReportType[]|array
-     */
-    protected function toArrayOfReportTypes($items)
-    {
-        $result = [];
-
-        // Если влетело некоторое скалярное выражение - то преобразуем его в массив по разделителю
-        if (is_scalar($items) && ! empty($items)) {
-            $items = explode(',', trim((string) $items));
-        }
-
-        // Если элементом является объект, умеющим себя преобразовывать в массив - то преобразуем
-        if (is_object($items) && !($items instanceof ReportType) && method_exists($items, 'toArray')) {
-            $items = $items->toArray();
-        }
-
-        foreach ((array) $items as $key => $value) {
-            if (is_scalar($value) && ! empty($value)) {
-                // Если влетела строка - то пушим в стек объект, у которого и имя, и UID равны этой строке
-                $report_type = new ReportType;
-                $report_type->setUid($value);
-                $report_type->setName($value);
-
-                array_push($result, $report_type);
-            } elseif (is_array($value) || $value instanceof Traversable) {
-                // Если массив или перебираемое дерьмо - то работаем с ним
-                $report_type = new ReportType;
-                $report_type->setName($key);
-                $report_type->configure($value);
-
-                array_push($result, $report_type);
-            }
-        }
-
-        return $result;
-    }
-
-    /**
      * Возвращает объект типа отчета по его имени.
      *
      * @param string $report_type_name
@@ -198,5 +136,67 @@ class ReportTypesRepository extends Collection
                 $this->items[$key] = $value;
             }
         }
+    }
+
+    /**
+     * Преобразует входящее значение в массив объектов типа ReportType.
+     *
+     * Принимает на вход массив данных о типах отчетов, и в их соответствии формирует коллекцию данных. Формат
+     * массивов может быть следующим:
+     *
+     * <code>
+     * 'uid_0'
+     *
+     * 'uid_0,uid_1'
+     *
+     * [
+     *   'uid_1',
+     *   'uid_2',
+     * ]
+     *
+     * [
+     *   'uid_1' => ['uid' => 'report_1_uid', 'description' => 'Some 1 description'],
+     *   'uid_2' => ['id' => 'report_2_uid',  'desc' => 'Some 2 description'],
+     *  ['name' => 'some_3_name', 'id' => 'report_3_uid', 'description' => 'Some 3 description'],
+     * ]
+     * </code>
+     *
+     * @param string|array|array[]|object $items
+     *
+     * @return ReportType[]|array
+     */
+    protected function toArrayOfReportTypes($items)
+    {
+        $result = [];
+
+        // Если влетело некоторое скалярное выражение - то преобразуем его в массив по разделителю
+        if (is_scalar($items) && ! empty($items)) {
+            $items = explode(',', trim((string) $items));
+        }
+
+        // Если элементом является объект, умеющим себя преобразовывать в массив - то преобразуем
+        if (is_object($items) && ! ($items instanceof ReportType) && method_exists($items, 'toArray')) {
+            $items = $items->toArray();
+        }
+
+        foreach ((array) $items as $key => $value) {
+            if (is_scalar($value) && ! empty($value)) {
+                // Если влетела строка - то пушим в стек объект, у которого и имя, и UID равны этой строке
+                $report_type = new ReportType;
+                $report_type->setUid($value);
+                $report_type->setName($value);
+
+                array_push($result, $report_type);
+            } elseif (is_array($value) || $value instanceof Traversable) {
+                // Если массив или перебираемое дерьмо - то работаем с ним
+                $report_type = new ReportType;
+                $report_type->setName($key);
+                $report_type->configure($value);
+
+                array_push($result, $report_type);
+            }
+        }
+
+        return $result;
     }
 }

@@ -112,7 +112,7 @@ class ReportTypeRepositoryTest extends AbstractUnitTestCase
         $this->assertTrue($this->instance->hasUid('ccc'));
         $this->assertTrue($this->instance->has('bbb'));
     }
-    
+
     /**
      * Тест дополнительных методов.
      *
