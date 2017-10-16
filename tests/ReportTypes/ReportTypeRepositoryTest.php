@@ -56,6 +56,11 @@ class ReportTypeRepositoryTest extends AbstractUnitTestCase
      */
     public function testConstructor()
     {
+        // Если передать готовый объект
+        $instance = new ReportTypesRepository(new ReportType('uid_some'));
+        $this->assertEquals('uid_some', $instance->first()->getUid());
+        $this->assertCount(1, $instance);
+
         // Если передать просто одну строку
         $instance = new ReportTypesRepository('uid_0');
         $this->assertEquals('uid_0', $instance->first()->getUid());
@@ -100,6 +105,29 @@ class ReportTypeRepositoryTest extends AbstractUnitTestCase
     }
 
     /**
+     * Тест получения и установки ReportType, используемого по умолчанию.
+     */
+    public function testDefaultReportTypeMethods()
+    {
+        // Тест установкой готового объекта
+        $this->instance->setDefaultReportType(new ReportType('uid_0'));
+        $this->assertEquals('uid_0', $this->instance->getDefaultReportType()->getUid());
+
+        // Тест того, что ничего не изменилось, если передать некорректное значение
+        $this->instance->setDefaultReportType(null);
+        $this->assertEquals('uid_0', $this->instance->getDefaultReportType()->getUid());
+
+        // Тест установкой простой строкой
+        $this->instance->setDefaultReportType('uid_1');
+        $this->assertEquals('uid_1', $this->instance->getDefaultReportType()->getUid());
+
+        // Тест установки массивом
+        $this->instance->setDefaultReportType(['name_1' => ['uid' => 'uid_1']]);
+        $this->assertEquals('name_1', $this->instance->getDefaultReportType()->getName());
+        $this->assertEquals('uid_1', $this->instance->getDefaultReportType()->getUid());
+    }
+
+    /**
      * Тест метода `offsetSet()`.
      */
     public function testOffsetSet()
@@ -111,6 +139,9 @@ class ReportTypeRepositoryTest extends AbstractUnitTestCase
         $this->instance->put('bbb', new ReportType('ccc'));
         $this->assertTrue($this->instance->hasUid('ccc'));
         $this->assertTrue($this->instance->has('bbb'));
+
+        $this->instance->push('some_uid');
+        $this->assertTrue($this->instance->hasUid('some_uid'));
     }
 
     /**

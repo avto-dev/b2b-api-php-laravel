@@ -23,6 +23,13 @@ class ReportTypesRepository extends Collection
     protected $items = [];
 
     /**
+     * Тип отчета, используемый по умолчанию.
+     *
+     * @var ReportType|null
+     */
+    protected $default_report_type;
+
+    /**
      * ReportTypesRepository constructor.
      *
      * @param array|Traversable|mixed $items
@@ -30,6 +37,32 @@ class ReportTypesRepository extends Collection
     public function __construct($items = [])
     {
         $this->items = $this->toArrayOfReportTypes($items);
+    }
+
+    /**
+     * Устанавливает ReportType, используемый по умолчанию.
+     *
+     * @param ReportType|string|array $report_type
+     *
+     * @return void
+     */
+    public function setDefaultReportType($report_type)
+    {
+        $report_type = $this->toReportType($report_type);
+
+        if ($report_type instanceof ReportType) {
+            $this->default_report_type = $report_type;
+        }
+    }
+
+    /**
+     * Возвращает установленный ранее ReportType, который используется по умолчанию.
+     *
+     * @return ReportType|null
+     */
+    public function getDefaultReportType()
+    {
+        return $this->default_report_type;
     }
 
     /**
@@ -129,6 +162,11 @@ class ReportTypesRepository extends Collection
      */
     public function offsetSet($key, $value)
     {
+        // Пытаемся преобразовать значение в объект типа ReportType, если в этом есть необходимость
+        $value = $value instanceof ReportTypeInterface
+            ? $value
+            : $this->toReportType($value);
+
         if ($value instanceof ReportTypeInterface) {
             if (is_null($key)) {
                 array_push($this->items, $value);
@@ -145,6 +183,8 @@ class ReportTypesRepository extends Collection
      * массивов может быть следующим:
      *
      * <code>
+     * new ReportType('uid_0')
+     *
      * 'uid_0'
      *
      * 'uid_0,uid_1'
@@ -180,7 +220,10 @@ class ReportTypesRepository extends Collection
         }
 
         foreach ((array) $items as $key => $value) {
-            if (is_scalar($value) && ! empty($value)) {
+            if ($value instanceof ReportType) {
+                // Если элементом уже является объект типа ReportType - то сразу его пушим в стек
+                array_push($result, $value);
+            } elseif (is_scalar($value) && ! empty($value)) {
                 // Если влетела строка - то пушим в стек объект, у которого и имя, и UID равны этой строке
                 $report_type = new ReportType;
                 $report_type->setUid($value);
@@ -198,5 +241,21 @@ class ReportTypesRepository extends Collection
         }
 
         return $result;
+    }
+
+    /**
+     * Конвертирует переданное методу значение в объект типа ReportType, если это возможно.
+     *
+     * @param string|array|array[]|object $some_value
+     *
+     * @return ReportType|mixed|null
+     */
+    public function toReportType($some_value)
+    {
+        $report_types_array = $this->toArrayOfReportTypes($some_value);
+
+        return isset($report_types_array[0]) && (($report_type = $report_types_array[0]) instanceof ReportType)
+            ? $report_type
+            : null;
     }
 }

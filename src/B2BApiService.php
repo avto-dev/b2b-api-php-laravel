@@ -2,19 +2,19 @@
 
 namespace AvtoDev\B2BApiLaravel;
 
-use AvtoDev\B2BApi\Tokens\AuthToken;
 use AvtoDev\B2BApi\Clients\v1\Client;
-use Illuminate\Foundation\Application;
-use AvtoDev\B2BApi\References\QueryTypes;
 use AvtoDev\B2BApi\Exceptions\B2BApiException;
-use AvtoDev\B2BApiLaravel\Traits\InstanceableTrait;
-use AvtoDev\B2BApi\Responses\DataTypes\Report\ReportData;
-use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypeInterface;
-use AvtoDev\B2BApiLaravel\Exceptions\B2BApiServiceException;
-use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypesRepository;
 use AvtoDev\B2BApi\Exceptions\B2BApiInvalidArgumentException;
+use AvtoDev\B2BApi\References\QueryTypes;
+use AvtoDev\B2BApi\Responses\DataTypes\Report\ReportData;
 use AvtoDev\B2BApi\Responses\DataTypes\Report\ReportStatusData;
+use AvtoDev\B2BApi\Tokens\AuthToken;
+use AvtoDev\B2BApiLaravel\Exceptions\B2BApiServiceException;
 use AvtoDev\B2BApiLaravel\Exceptions\InvalidReportTypeException;
+use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypeInterface;
+use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypesRepository;
+use AvtoDev\B2BApiLaravel\Traits\InstanceableTrait;
+use Illuminate\Foundation\Application;
 
 /**
  * Class B2BApiService.
@@ -118,9 +118,11 @@ class B2BApiService
     /**
      * Создает (заказывает) отчет у сервиса B2B API.
      *
-     * @param string                     $query_type  Тип идентификатора запрашиваемой сущности
-     * @param string                     $query_id    Идентификатор запрашиваемой сущности (VIN, GRZ и так далее)
-     * @param ReportTypeInterface|string $report_type UID типа отчета либо его имя
+     * Если методу не передать значение $report_type - то он будет автоматически извлечен из конфигурации.
+     *
+     * @param string                          $query_type  Тип идентификатора запрашиваемой сущности
+     * @param string                          $query_id    Идентификатор запрашиваемой сущности (VIN, GRZ и так далее)
+     * @param ReportTypeInterface|string|null $report_type UID типа отчета либо его **имя** (из конфигурации)
      *
      * @throws B2BApiServiceException
      * @throws B2BApiInvalidArgumentException
@@ -128,8 +130,18 @@ class B2BApiService
      *
      * @return ReportStatusData
      */
-    public function makeReport($query_type, $query_id, $report_type)
+    public function makeReport($query_type, $query_id, $report_type = null)
     {
+        // Если методу передан пустой $report_type, то пытаемся извлечь ReportType из репозитория, который установлен
+        // по как используемый по умолчанию
+        $report_type = empty($report_type)
+            ? (
+            ($default = $this->report_types_repository->getDefaultReportType()) instanceof ReportTypeInterface
+                ? $default
+                : null
+            )
+            : $report_type;
+
         $response = $this->client->user()->report()->make(
             $this->generateAuthToken(),
             $query_type,
@@ -177,7 +189,7 @@ class B2BApiService
     {
         if ($input instanceof ReportTypeInterface) {
             return $input->getUid();
-        } elseif (is_string($input) && ! empty($input)) {
+        } elseif (is_string($input) && !empty($input)) {
             $report_type = $this->report_types_repository->getByName($input);
             if ($report_type instanceof ReportTypeInterface) {
                 return $report_type->getUid();

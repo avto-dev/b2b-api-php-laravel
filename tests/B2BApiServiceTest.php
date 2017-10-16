@@ -67,6 +67,12 @@ class B2BApiServiceTest extends AbstractUnitTestCase
             'A123AA177',
             'default'
         ));
+
+        // Тест того, что метод не валится, если ему не передать ReportType
+        $this->assertInstanceOf(ReportStatusData::class, $this->instance->makeReport(
+            'GRZ',
+            'A123AA177'
+        ));
     }
 
     /**

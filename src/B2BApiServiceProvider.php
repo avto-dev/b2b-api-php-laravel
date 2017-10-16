@@ -80,9 +80,17 @@ class B2BApiServiceProvider extends IlluminateServiceProvider
     protected function registerReportTypesRepository()
     {
         $this->app->singleton(ReportTypesRepository::class, function () {
-            return new ReportTypesRepository($this->config()->get(
+            $repository = new ReportTypesRepository($this->config()->get(
                 sprintf('%s.report_types.uids', static::getConfigRootKeyName())
             ));
+
+            if ($repository->hasName($name = $this->config()->get(sprintf(
+                '%s.report_types.use_as_default', static::getConfigRootKeyName()
+            )))) {
+                $repository->setDefaultReportType($repository->getByName($name));
+            }
+
+            return $repository;
         });
 
         $this->app->bind('b2b-api.report-types.repository', ReportTypesRepository::class);
@@ -112,7 +120,8 @@ class B2BApiServiceProvider extends IlluminateServiceProvider
             $client->client()->httpClient()->on('before_request',
                 function (&$method, &$uri, &$data, &$headers) {
                     event(new BeforeRequestSending($method, $uri, $data, $headers));
-                });
+                }
+            );
             $client->client()->httpClient()->on('after_request',
                 function (ResponseInterface $response) {
                     event(new AfterRequestSending(clone $response));
