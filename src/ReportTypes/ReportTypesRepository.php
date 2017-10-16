@@ -177,6 +177,22 @@ class ReportTypesRepository extends Collection
     }
 
     /**
+     * Конвертирует переданное методу значение в объект типа ReportType, если это возможно.
+     *
+     * @param string|array|array[]|object $some_value
+     *
+     * @return ReportType|mixed|null
+     */
+    public function toReportType($some_value)
+    {
+        $report_types_array = $this->toArrayOfReportTypes($some_value);
+
+        return isset($report_types_array[0]) && (($report_type = $report_types_array[0]) instanceof ReportType)
+            ? $report_type
+            : null;
+    }
+
+    /**
      * Преобразует входящее значение в массив объектов типа ReportType.
      *
      * Принимает на вход массив данных о типах отчетов, и в их соответствии формирует коллекцию данных. Формат
@@ -241,21 +257,5 @@ class ReportTypesRepository extends Collection
         }
 
         return $result;
-    }
-
-    /**
-     * Конвертирует переданное методу значение в объект типа ReportType, если это возможно.
-     *
-     * @param string|array|array[]|object $some_value
-     *
-     * @return ReportType|mixed|null
-     */
-    public function toReportType($some_value)
-    {
-        $report_types_array = $this->toArrayOfReportTypes($some_value);
-
-        return isset($report_types_array[0]) && (($report_type = $report_types_array[0]) instanceof ReportType)
-            ? $report_type
-            : null;
     }
 }

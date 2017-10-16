@@ -7,7 +7,6 @@ use AvtoDev\B2BApiLaravel\B2BApiServiceProvider;
 use AvtoDev\B2BApiLaravel\Events\AfterRequestSending;
 use AvtoDev\B2BApiLaravel\Events\BeforeRequestSending;
 use AvtoDev\B2BApiLaravel\Facades\B2BApiServiceFacade;
-use AvtoDev\B2BApiLaravel\ReportTypes\ReportType;
 use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypeInterface;
 use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypesRepository;
 use AvtoDev\B2BApiLaravel\Facades\ReportTypesRepositoryFacade;

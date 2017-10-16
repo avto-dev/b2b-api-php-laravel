@@ -2,19 +2,19 @@
 
 namespace AvtoDev\B2BApiLaravel;
 
-use AvtoDev\B2BApi\Clients\v1\Client;
-use AvtoDev\B2BApi\Exceptions\B2BApiException;
-use AvtoDev\B2BApi\Exceptions\B2BApiInvalidArgumentException;
-use AvtoDev\B2BApi\References\QueryTypes;
-use AvtoDev\B2BApi\Responses\DataTypes\Report\ReportData;
-use AvtoDev\B2BApi\Responses\DataTypes\Report\ReportStatusData;
 use AvtoDev\B2BApi\Tokens\AuthToken;
-use AvtoDev\B2BApiLaravel\Exceptions\B2BApiServiceException;
-use AvtoDev\B2BApiLaravel\Exceptions\InvalidReportTypeException;
-use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypeInterface;
-use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypesRepository;
-use AvtoDev\B2BApiLaravel\Traits\InstanceableTrait;
+use AvtoDev\B2BApi\Clients\v1\Client;
 use Illuminate\Foundation\Application;
+use AvtoDev\B2BApi\References\QueryTypes;
+use AvtoDev\B2BApi\Exceptions\B2BApiException;
+use AvtoDev\B2BApiLaravel\Traits\InstanceableTrait;
+use AvtoDev\B2BApi\Responses\DataTypes\Report\ReportData;
+use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypeInterface;
+use AvtoDev\B2BApiLaravel\Exceptions\B2BApiServiceException;
+use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypesRepository;
+use AvtoDev\B2BApi\Exceptions\B2BApiInvalidArgumentException;
+use AvtoDev\B2BApi\Responses\DataTypes\Report\ReportStatusData;
+use AvtoDev\B2BApiLaravel\Exceptions\InvalidReportTypeException;
 
 /**
  * Class B2BApiService.
@@ -189,7 +189,7 @@ class B2BApiService
     {
         if ($input instanceof ReportTypeInterface) {
             return $input->getUid();
-        } elseif (is_string($input) && !empty($input)) {
+        } elseif (is_string($input) && ! empty($input)) {
             $report_type = $this->report_types_repository->getByName($input);
             if ($report_type instanceof ReportTypeInterface) {
                 return $report_type->getUid();
