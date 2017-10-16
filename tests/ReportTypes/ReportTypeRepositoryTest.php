@@ -2,6 +2,7 @@
 
 namespace AvtoDev\B2BApiLaravel\Tests\ReportTypes;
 
+use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypesRepositoryInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Contracts\Support\Arrayable;
@@ -46,6 +47,7 @@ class ReportTypeRepositoryTest extends AbstractUnitTestCase
      */
     public function testImplements()
     {
+        $this->assertInstanceOf(ReportTypesRepositoryInterface::class, $this->instance);
         $this->assertInstanceOf(Collection::class, $this->instance);
         $this->assertInstanceOf(Arrayable::class, $this->instance);
         $this->assertInstanceOf(Jsonable::class, $this->instance);

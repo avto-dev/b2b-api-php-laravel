@@ -11,7 +11,7 @@ use AvtoDev\B2BApiLaravel\Traits\InstanceableTrait;
  *
  * Коллекция (репозиторий) всех типов отчетов.
  */
-class ReportTypesRepository extends Collection
+class ReportTypesRepository extends Collection implements ReportTypesRepositoryInterface
 {
     use InstanceableTrait;
 
@@ -40,11 +40,7 @@ class ReportTypesRepository extends Collection
     }
 
     /**
-     * Устанавливает ReportType, используемый по умолчанию.
-     *
-     * @param ReportType|string|array $report_type
-     *
-     * @return void
+     * {@inheritdoc}
      */
     public function setDefaultReportType($report_type)
     {
@@ -56,9 +52,7 @@ class ReportTypesRepository extends Collection
     }
 
     /**
-     * Возвращает установленный ранее ReportType, который используется по умолчанию.
-     *
-     * @return ReportType|null
+     * {@inheritdoc}
      */
     public function getDefaultReportType()
     {
@@ -66,11 +60,7 @@ class ReportTypesRepository extends Collection
     }
 
     /**
-     * Возвращает объект типа отчета по его имени.
-     *
-     * @param string $report_type_name
-     *
-     * @return ReportTypeInterface|null
+     * {@inheritdoc}
      */
     public function getByName($report_type_name)
     {
@@ -82,11 +72,7 @@ class ReportTypesRepository extends Collection
     }
 
     /**
-     * Проверяет наличие объекта типа отчета по его имени.
-     *
-     * @param string $name
-     *
-     * @return bool
+     * {@inheritdoc}
      */
     public function hasName($name)
     {
@@ -94,9 +80,7 @@ class ReportTypesRepository extends Collection
     }
 
     /**
-     * Возвращает массив всех имен типов отчетов.
-     *
-     * @return string[]|array
+     * {@inheritdoc}
      */
     public function getAllNames()
     {
@@ -112,11 +96,7 @@ class ReportTypesRepository extends Collection
     }
 
     /**
-     * Возвращает объект типа отчета по его uid-у.
-     *
-     * @param string $report_type_uid
-     *
-     * @return ReportTypeInterface|null
+     * {@inheritdoc}
      */
     public function getByUid($report_type_uid)
     {
@@ -128,11 +108,7 @@ class ReportTypesRepository extends Collection
     }
 
     /**
-     * Проверяет наличие объекта типа отчета по UID.
-     *
-     * @param string $uid
-     *
-     * @return bool
+     * {@inheritdoc}
      */
     public function hasUid($uid)
     {
@@ -140,9 +116,7 @@ class ReportTypesRepository extends Collection
     }
 
     /**
-     * Возвращает массив всех UIDов типов отчетов.
-     *
-     * @return string[]|array
+     * {@inheritdoc}
      */
     public function getAllUids()
     {
@@ -177,11 +151,7 @@ class ReportTypesRepository extends Collection
     }
 
     /**
-     * Конвертирует переданное методу значение в объект типа ReportType, если это возможно.
-     *
-     * @param string|array|array[]|object $some_value
-     *
-     * @return ReportType|mixed|null
+     * {@inheritdoc}
      */
     public function toReportType($some_value)
     {
