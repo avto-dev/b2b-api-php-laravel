@@ -2,13 +2,13 @@
 
 namespace AvtoDev\B2BApiLaravel\Tests\ReportTypes;
 
-use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypesRepositoryInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Contracts\Support\Arrayable;
 use AvtoDev\B2BApiLaravel\ReportTypes\ReportType;
 use AvtoDev\B2BApiLaravel\Tests\AbstractUnitTestCase;
 use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypesRepository;
+use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypesRepositoryInterface;
 
 /**
  * Class ReportTypeRepositoryTest.
