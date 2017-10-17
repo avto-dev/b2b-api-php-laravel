@@ -78,7 +78,7 @@ interface ReportTypesRepositoryInterface
      *
      * @param string|array|array[]|object $some_value
      *
-     * @return ReportType|mixed|null
+     * @return ReportType|null
      */
     public function toReportType($some_value);
 }

@@ -2,6 +2,7 @@
 
 namespace AvtoDev\B2BApiLaravel\Facades;
 
+use AvtoDev\B2BApiLaravel\ReportTypes\ReportType;
 use Illuminate\Support\Facades\Facade;
 use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypeInterface;
 use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypesRepository;
@@ -14,6 +15,11 @@ use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypesRepository;
  * @method static ReportTypeInterface|null getByUid(string $report_type_uid)
  * @method static string[]|array getAllNames()
  * @method static string[]|array getAllUids()
+ * @method static void setDefaultReportType(ReportType|string|array $report_type)
+ * @method static ReportType|null getDefaultReportType()
+ * @method static bool hasName()
+ * @method static bool hasUid()
+ * @method static ReportType|null toReportType(string|array|array[]|object $some_value)
  */
 class ReportTypesRepositoryFacade extends Facade
 {
