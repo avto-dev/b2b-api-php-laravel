@@ -1,4 +1,4 @@
-# Environment deps.
+# Environment lock file
 composer.lock
 
 # IDEs

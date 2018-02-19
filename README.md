@@ -1,18 +1,19 @@
 <p align="center">
-  <img alt="laravel" src="https://habrastorage.org/webt/59/e1/c4/59e1c40b83e9d293787547.png" width="70" height="70" /> <img alt="logo" src="https://habrastorage.org/webt/59/df/45/59df45aa6c9cb971309988.png" width="70" height="70" />
+  <img src="https://laravel.com/assets/img/components/logo-laravel.svg" alt="Laravel" width="240" />
 </p>
 
-# Сервис для работы с B2B API для Laravel 5
+# Расширенный клиент для работы с B2B API (для Laravel >=5.4)
 
-![Packagist](https://img.shields.io/packagist/v/avto-dev/b2b-api-php-laravel.svg?style=flat&maxAge=30)
-[![Build Status](https://scrutinizer-ci.com/g/avto-dev/b2b-api-php-laravel/badges/build.png?b=master)](https://scrutinizer-ci.com/g/avto-dev/b2b-api-php-laravel/build-status/master)
-![StyleCI](https://styleci.io/repos/106786234/shield?style=flat&maxAge=30)
-[![Code Coverage](https://scrutinizer-ci.com/g/avto-dev/b2b-api-php-laravel/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/avto-dev/b2b-api-php-laravel/?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/avto-dev/b2b-api-php-laravel/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/avto-dev/b2b-api-php-laravel/?branch=master)
-![GitHub issues](https://img.shields.io/github/issues/avto-dev/b2b-api-php-laravel.svg?style=flat&maxAge=30)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/7dae5e9b-08d9-4bdb-a4da-1b5562e843c3/mini.png)](https://insight.sensiolabs.com/projects/7dae5e9b-08d9-4bdb-a4da-1b5562e843c3)
+[![Version][badge_version]][link_packagist]
+[![Build Status][badge_build_status]][link_build_status]
+[![StyleCI][badge_styleci]][link_styleci]
+[![Coverage][badge_coverage]][link_coverage]
+[![Code Quality][badge_quality]][link_coverage]
+[![Issues][badge_issues]][link_issues]
+[![License][badge_license]][link_license]
+[![Downloads count][badge_downloads_count]][link_packagist]
 
-При помощи данного пакета вы сможете интегрировать сервис по работе с B2B API в ваше **Laravel 5.x** приложение с 
+При помощи данного пакета вы сможете интегрировать сервис по работе с B2B API в ваше **Laravel >=5.4** приложение с 
 помощью нескольких простых шагов.
 
 > Более подробно о работе самого клиента по работе с B2B API смотрите в [его репозитории][b2b_api_client].
@@ -22,7 +23,7 @@
 Для установки данного пакета выполните в терминале следующую команду:
 
 ```shell
-$ composer require avto-dev/b2b-api-php-laravel "2.*"
+$ composer require avto-dev/b2b-api-php-laravel "^2.0.11"
 ```
 
 > Для этого необходим установленный `composer`. Для его установки перейдите по [данной ссылке][getcomposer].
@@ -100,8 +101,7 @@ $ ./artisan vendor:publish --provider="App\Providers\B2BApiServiceProvider"
 Для тестирования данного пакета используется фреймворк `phpunit`. Для запуска тестов выполните в терминале:
 
 ```shell
-$ git clone git@github.com:avto-dev/b2b-api-php-laravel.git
-$ cd ./b2b-api-php-laravel
+$ git clone git@github.com:avto-dev/b2b-api-php-laravel.git ./b2b-api-php-laravel && cd $_
 $ composer update --dev
 $ composer test
 ```
@@ -116,8 +116,22 @@ $ composer test
 
 ## Лицензирование
 
-Код данного пакета распространяется под лицензией **MIT**.
+Код данного пакета распространяется под лицензией [MIT][link_license].
 
+[badge_version]:https://img.shields.io/packagist/v/avto-dev/b2b-api-php-laravel.svg?style=flat&maxAge=30
+[badge_downloads_count]:https://img.shields.io/packagist/dt/avto-dev/b2b-api-php-laravel.svg?style=flat&maxAge=30
+[badge_license]:https://img.shields.io/packagist/l/avto-dev/b2b-api-php-laravel.svg?style=flat&maxAge=30
+[badge_build_status]:https://scrutinizer-ci.com/g/avto-dev/b2b-api-php-laravel/badges/build.png?b=master
+[badge_styleci]:https://styleci.io/repos/106786234/shield
+[badge_coverage]:https://scrutinizer-ci.com/g/avto-dev/b2b-api-php-laravel/badges/coverage.png?b=master
+[badge_quality]:https://scrutinizer-ci.com/g/avto-dev/b2b-api-php-laravel/badges/quality-score.png?b=master
+[badge_issues]:https://img.shields.io/github/issues/avto-dev/b2b-api-php-laravel.svg?style=flat&maxAge=30
+[link_packagist]:https://packagist.org/packages/avto-dev/b2b-api-php-laravel
+[link_styleci]:https://styleci.io/repos/106786234/
+[link_license]:https://github.com/avto-dev/b2b-api-php-laravel/blob/master/LICENSE
+[link_build_status]:https://scrutinizer-ci.com/g/avto-dev/b2b-api-php-laravel/build-status/master
+[link_coverage]:https://scrutinizer-ci.com/g/avto-dev/b2b-api-php-laravel/?branch=master
+[link_issues]:https://github.com/avto-dev/b2b-api-php-laravel/issues
 [getcomposer]:https://getcomposer.org/download/
 [b2b_api_client]:https://github.com/avto-dev/b2b-api-php
 [laravel_events]:https://laravel.com/docs/5.5/events
