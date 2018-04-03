@@ -9,7 +9,7 @@ return [
      |
      | Базовый URI, по которому находится API B2B сервиса.
      */
-    'api_base_uri' => env('B2B_API_CLIENT_HOST', 'https://some.host/b2b/api/v1'),
+    'api_base_uri' => env('B2B_API_BASE_URI', 'https://some.host/b2b/api/v1'),
 
     /*
      | --------------------------------------------------------------------------
