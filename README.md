@@ -2,7 +2,7 @@
   <img src="https://laravel.com/assets/img/components/logo-laravel.svg" alt="Laravel" width="240" />
 </p>
 
-# Расширенный клиент для работы с B2B API (для Laravel >=5.4)
+# Расширенный клиент для работы с B2B API
 
 [![Version][badge_version]][link_packagist]
 [![Build Status][badge_build_status]][link_build_status]
@@ -13,8 +13,7 @@
 [![License][badge_license]][link_license]
 [![Downloads count][badge_downloads_count]][link_packagist]
 
-При помощи данного пакета вы сможете интегрировать сервис по работе с B2B API в ваше **Laravel >=5.4** приложение с 
-помощью нескольких простых шагов.
+При помощи данного пакета вы сможете интегрировать сервис по работе с B2B API в ваше Laravel приложение с помощью нескольких простых шагов.
 
 > Более подробно о работе самого клиента по работе с B2B API смотрите в [его репозитории][b2b_api_client].
 
@@ -74,6 +73,7 @@ $ ./artisan vendor:publish --provider="App\Providers\B2BApiServiceProvider"
 ## Использование
 
 Данный пакет регистрирует 2 IoC контейнера:
+
  * Репозиторий типов отчетов: `AvtoDev\B2BApiLaravel\ReportTypes\ReportTypesRepository`
  * Сервис по работе с B2B API: `AvtoDev\B2BApiLaravel\B2BApiService`
 
