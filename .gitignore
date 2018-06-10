@@ -1,4 +1,4 @@
-# Environment lock file
+# Composer lock file
 composer.lock
 
 # IDEs
@@ -11,7 +11,9 @@ composer.lock
 # Temp dirs & trash
 /temp
 /tmp
-/*.tmp
-
-# etc.
+/install
+/build
 /coverage
+clover-file
+.DS_Store
+.php_cs.cache

@@ -2,9 +2,6 @@
 
 namespace AvtoDev\B2BApiLaravel\Events;
 
-/**
- * Class BeforeRequestSending.
- */
 class BeforeRequestSending extends AbstractRequestEvent
 {
     /**
@@ -37,9 +34,9 @@ class BeforeRequestSending extends AbstractRequestEvent
      */
     public function __construct(&$method, &$uri, &$data = [], &$headers = [])
     {
-        $this->method  = $method;
-        $this->uri     = $uri;
-        $this->data    = $data;
-        $this->headers = $headers;
+        $this->method  = &$method;
+        $this->uri     = &$uri;
+        $this->data    = &$data;
+        $this->headers = &$headers;
     }
 }

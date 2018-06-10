@@ -4,9 +4,6 @@ namespace AvtoDev\B2BApiLaravel\Events;
 
 use Psr\Http\Message\ResponseInterface;
 
-/**
- * Class AfterRequestSending.
- */
 class AfterRequestSending extends AbstractRequestEvent
 {
     /**

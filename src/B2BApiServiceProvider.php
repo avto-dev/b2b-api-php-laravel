@@ -10,26 +10,8 @@ use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypesRepository;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 
-/**
- * Class B2BApiServiceProvider.
- *
- * Сервис-провайдер пакета, реализующего работу с сервисом B2B API.
- */
 class B2BApiServiceProvider extends IlluminateServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        $this->initializeConfigs();
-
-        $this->registerReportTypesRepository();
-        $this->registerClientInstance();
-    }
-
     /**
      * Возвращает путь до файла-конфигурации пакета.
      *
@@ -47,7 +29,21 @@ class B2BApiServiceProvider extends IlluminateServiceProvider
      */
     public static function getConfigRootKeyName()
     {
-        return basename(static::getConfigFilePath(), '.php'); // 'b2b-api-client'
+        return \basename(static::getConfigFilePath(), '.php');
+    }
+
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->initializeConfigs();
+
+        $this->registerReportTypesRepository();
+
+        $this->registerClientInstance();
     }
 
     /**
@@ -58,7 +54,7 @@ class B2BApiServiceProvider extends IlluminateServiceProvider
     public function boot()
     {
         $this->publishes([
-            realpath($config_path = static::getConfigFilePath()) => config_path(basename($config_path)),
+            \realpath($config_path = static::getConfigFilePath()) => config_path(\basename($config_path)),
         ], 'config');
     }
 
@@ -79,12 +75,15 @@ class B2BApiServiceProvider extends IlluminateServiceProvider
      */
     protected function registerReportTypesRepository()
     {
-        $this->app->singleton(ReportTypesRepository::class, function () {
-            $repository = new ReportTypesRepository($this->config()->get(
+        $this->app->singleton(ReportTypesRepository::class, function (Application $app) {
+            /** @var ConfigRepository $config */
+            $config = $app->make('config');
+
+            $repository = new ReportTypesRepository($config->get(
                 sprintf('%s.report_types.uids', static::getConfigRootKeyName())
             ));
 
-            if ($repository->hasName($name = $this->config()->get(sprintf(
+            if ($repository->hasName($name = $config->get(sprintf(
                 '%s.report_types.use_as_default', static::getConfigRootKeyName()
             )))) {
                 $repository->setDefaultReportType($repository->getByName($name));
@@ -97,16 +96,6 @@ class B2BApiServiceProvider extends IlluminateServiceProvider
     }
 
     /**
-     * Возвращает контейнер с конфигурацией приложения.
-     *
-     * @return ConfigRepository
-     */
-    protected function config()
-    {
-        return $this->app->make('config');
-    }
-
-    /**
      * Регистрирует контейнер-реализацию клиента.
      *
      * @return void
@@ -114,7 +103,10 @@ class B2BApiServiceProvider extends IlluminateServiceProvider
     protected function registerClientInstance()
     {
         $this->app->singleton(B2BApiService::class, function (Application $app) {
-            $client = new B2BApiService($app, $this->config()->get(static::getConfigRootKeyName()));
+            /** @var ConfigRepository $config */
+            $config = $app->make('config');
+
+            $client = new B2BApiService($app, $config->get(static::getConfigRootKeyName()));
 
             // "Вешаем" на события внутри клиента Laravel-обработчики
             $client->client()->httpClient()->on('before_request',

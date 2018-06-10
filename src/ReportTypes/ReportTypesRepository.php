@@ -6,11 +6,6 @@ use Traversable;
 use Illuminate\Support\Collection;
 use AvtoDev\B2BApiLaravel\Traits\InstanceableTrait;
 
-/**
- * Class ReportTypesRepository.
- *
- * Коллекция (репозиторий) всех типов отчетов.
- */
 class ReportTypesRepository extends Collection implements ReportTypesRepositoryInterface
 {
     use InstanceableTrait;
@@ -76,7 +71,7 @@ class ReportTypesRepository extends Collection implements ReportTypesRepositoryI
      */
     public function hasName($name)
     {
-        return in_array($name, $this->getAllNames());
+        return \in_array($name, $this->getAllNames(), true);
     }
 
     /**
@@ -87,8 +82,8 @@ class ReportTypesRepository extends Collection implements ReportTypesRepositoryI
         $result = [];
 
         foreach ($this->all() as $item) {
-            if ($item instanceof ReportTypeInterface && ! empty($name = $item->getName())) {
-                array_push($result, $name);
+            if ($item instanceof ReportTypeInterface && ($name = $item->getName()) !== null) {
+                $result[] = $name;
             }
         }
 
@@ -112,7 +107,7 @@ class ReportTypesRepository extends Collection implements ReportTypesRepositoryI
      */
     public function hasUid($uid)
     {
-        return in_array($uid, $this->getAllUids());
+        return \in_array($uid, $this->getAllUids(), true);
     }
 
     /**
@@ -123,8 +118,8 @@ class ReportTypesRepository extends Collection implements ReportTypesRepositoryI
         $result = [];
 
         foreach ($this->all() as $item) {
-            if ($item instanceof ReportTypeInterface && ! empty($uid = $item->getUid())) {
-                array_push($result, $uid);
+            if ($item instanceof ReportTypeInterface && ($uid = $item->getUid()) !== null) {
+                $result[] = $uid;
             }
         }
 
@@ -142,8 +137,8 @@ class ReportTypesRepository extends Collection implements ReportTypesRepositoryI
             : $this->toReportType($value);
 
         if ($value instanceof ReportTypeInterface) {
-            if (is_null($key)) {
-                array_push($this->items, $value);
+            if ($key === null) {
+                $this->items[] = $value;
             } else {
                 $this->items[$key] = $value;
             }
@@ -201,28 +196,28 @@ class ReportTypesRepository extends Collection implements ReportTypesRepositoryI
         }
 
         // Если элементом является объект, умеющим себя преобразовывать в массив - то преобразуем
-        if (is_object($items) && ! ($items instanceof ReportType) && method_exists($items, 'toArray')) {
+        if (\is_object($items) && ! ($items instanceof ReportType) && \method_exists($items, 'toArray')) {
             $items = $items->toArray();
         }
 
         foreach ((array) $items as $key => $value) {
             if ($value instanceof ReportType) {
                 // Если элементом уже является объект типа ReportType - то сразу его пушим в стек
-                array_push($result, $value);
-            } elseif (is_scalar($value) && ! empty($value)) {
+                $result[] = $value;
+            } elseif (\is_scalar($value) && ! empty($value)) {
                 // Если влетела строка - то пушим в стек объект, у которого и имя, и UID равны этой строке
                 $report_type = new ReportType;
                 $report_type->setUid($value);
                 $report_type->setName($value);
 
-                array_push($result, $report_type);
-            } elseif (is_array($value) || $value instanceof Traversable) {
+                $result[] = $report_type;
+            } elseif (\is_array($value) || $value instanceof Traversable) {
                 // Если массив или перебираемое дерьмо - то работаем с ним
                 $report_type = new ReportType;
                 $report_type->setName($key);
                 $report_type->configure($value);
 
-                array_push($result, $report_type);
+                $result[] = $report_type;
             }
         }
 

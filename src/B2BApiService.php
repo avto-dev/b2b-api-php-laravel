@@ -17,8 +17,6 @@ use AvtoDev\B2BApi\Responses\DataTypes\Report\ReportStatusData;
 use AvtoDev\B2BApiLaravel\Exceptions\InvalidReportTypeException;
 
 /**
- * Class B2BApiService.
- *
  * Клиент, реализующий работу с B2B API.
  */
 class B2BApiService
@@ -74,7 +72,7 @@ class B2BApiService
     public function __construct(Application $app, $config = [])
     {
         $this->app                     = $app;
-        $this->config                  = array_replace_recursive($this->config, (array) $config);
+        $this->config                  = \array_replace_recursive($this->config, (array) $config);
         $this->auth_token              = new AuthToken;
         $this->query_types             = new QueryTypes;
         $this->report_types_repository = $app->make(ReportTypesRepository::class);
@@ -134,13 +132,13 @@ class B2BApiService
     {
         // Если методу передан пустой $report_type, то пытаемся извлечь ReportType из репозитория, который установлен
         // по как используемый по умолчанию
-        $report_type = empty($report_type)
-            ? (
-            ($default = $this->report_types_repository->getDefaultReportType()) instanceof ReportTypeInterface
-                ? $default
-                : null
-            )
-            : $report_type;
+        if ($report_type === null) {
+            $default = $this->report_types_repository->getDefaultReportType();
+
+            if ($default instanceof ReportTypeInterface) {
+                $report_type = $default;
+            }
+        }
 
         $response = $this->client->user()->report()->make(
             $this->generateAuthToken(),
@@ -166,7 +164,9 @@ class B2BApiService
      */
     public function generateAuthToken($age = 172800, $timestamp = null)
     {
-        return $this->auth_token->generate(
+        $auth_token = $this->auth_token; // PHP 5.6
+
+        return $auth_token::generate(
             $this->config['username'],
             $this->config['password'],
             $this->config['domain'],
@@ -189,15 +189,19 @@ class B2BApiService
     {
         if ($input instanceof ReportTypeInterface) {
             return $input->getUid();
-        } elseif (is_string($input) && ! empty($input)) {
+        }
+
+        if (is_string($input) && ! empty($input)) {
             $report_type = $this->report_types_repository->getByName($input);
+
             if ($report_type instanceof ReportTypeInterface) {
                 return $report_type->getUid();
-            } else {
-                $report_type = $this->report_types_repository->getByUid($input);
-                if ($report_type instanceof ReportTypeInterface) {
-                    return $report_type->getUid();
-                }
+            }
+
+            $report_type = $this->report_types_repository->getByUid($input);
+
+            if ($report_type instanceof ReportTypeInterface) {
+                return $report_type->getUid();
             }
         }
 

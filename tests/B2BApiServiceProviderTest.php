@@ -11,9 +11,6 @@ use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypeInterface;
 use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypesRepository;
 use AvtoDev\B2BApiLaravel\Facades\ReportTypesRepositoryFacade;
 
-/**
- * Class B2BApiServiceProviderTest.
- */
 class B2BApiServiceProviderTest extends AbstractUnitTestCase
 {
     /**

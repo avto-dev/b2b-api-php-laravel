@@ -20,6 +20,8 @@ use AvtoDev\B2BApi\Responses\DataTypes\Report\ReportStatusData;
  * @method static ReportStatusData refreshReport($report_uid)
  * @method static string generateAuthToken()
  * @method static null|string getReportTypeUid()
+ *
+ * @see B2BApiService
  */
 class B2BApiServiceFacade extends Facade
 {

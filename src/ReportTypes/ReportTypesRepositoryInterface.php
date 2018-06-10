@@ -2,9 +2,6 @@
 
 namespace AvtoDev\B2BApiLaravel\ReportTypes;
 
-/**
- * Interface ReportTypesRepositoryInterface.
- */
 interface ReportTypesRepositoryInterface
 {
     /**

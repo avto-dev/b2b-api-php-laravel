@@ -20,6 +20,8 @@ use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypesRepository;
  * @method static bool hasName()
  * @method static bool hasUid()
  * @method static ReportType|null toReportType(string|array|array[]|object $some_value)
+ *
+ * @see ReportTypesRepository
  */
 class ReportTypesRepositoryFacade extends Facade
 {

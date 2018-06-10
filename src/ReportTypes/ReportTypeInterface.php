@@ -6,9 +6,6 @@ use Traversable;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Contracts\Support\Arrayable;
 
-/**
- * Interface ReportTypeInterface.
- */
 interface ReportTypeInterface extends Arrayable, Jsonable
 {
     /**

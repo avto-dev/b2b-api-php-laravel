@@ -5,11 +5,6 @@ namespace AvtoDev\B2BApiLaravel\ReportTypes;
 use Traversable;
 use Illuminate\Support\Str;
 
-/**
- * Class ReportType.
- *
- * Объект типа отчета.
- */
 class ReportType implements ReportTypeInterface
 {
     /**
@@ -58,7 +53,7 @@ class ReportType implements ReportTypeInterface
      */
     public function configure($input)
     {
-        if ($input instanceof ReportTypeInterface) {
+        if ($input instanceof self) {
             $this->setUid($input->getUid());
             $this->setDescription($input->getDescription());
             $this->setName($input->getName());
@@ -81,7 +76,7 @@ class ReportType implements ReportTypeInterface
                         break;
                 }
             }
-        } elseif (is_string($input) && ! empty($input)) {
+        } elseif (\is_string($input) && ! empty($input)) {
             $this->setUid($input);
         }
     }
@@ -91,7 +86,7 @@ class ReportType implements ReportTypeInterface
      */
     public function toJson($options = 0)
     {
-        return json_encode($this->toArray(), $options);
+        return \json_encode($this->toArray(), $options);
     }
 
     /**
@@ -119,13 +114,9 @@ class ReportType implements ReportTypeInterface
      */
     public function setUid($uid)
     {
-        $this->uid = is_null($uid)
+        $this->uid = $uid === null
             ? null
-            : (
-            ! empty($uid)
-                ? trim((string) $uid)
-                : null
-            );
+            : trim((string) $uid);
 
         return $this;
     }
@@ -143,13 +134,9 @@ class ReportType implements ReportTypeInterface
      */
     public function setDescription($description)
     {
-        $this->description = is_null($description)
+        $this->description = $description === null
             ? null
-            : (
-            ! empty($description)
-                ? trim((string) $description)
-                : null
-            );
+            : trim((string) $description);
 
         return $this;
     }
@@ -167,13 +154,9 @@ class ReportType implements ReportTypeInterface
      */
     public function setName($name)
     {
-        $this->name = is_null($name)
+        $this->name = $name === null
             ? null
-            : (
-            ! empty($name)
-                ? trim((string) $name)
-                : null
-            );
+            : trim((string) $name);
 
         return $this;
     }

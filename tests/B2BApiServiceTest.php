@@ -11,9 +11,6 @@ use AvtoDev\B2BApi\Exceptions\B2BApiInvalidArgumentException;
 use AvtoDev\B2BApi\Responses\DataTypes\Report\ReportStatusData;
 use AvtoDev\B2BApiLaravel\Exceptions\InvalidReportTypeException;
 
-/**
- * Class B2BApiServiceTest.
- */
 class B2BApiServiceTest extends AbstractUnitTestCase
 {
     /**
