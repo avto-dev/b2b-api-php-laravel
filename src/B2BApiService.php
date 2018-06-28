@@ -2,19 +2,19 @@
 
 namespace AvtoDev\B2BApiLaravel;
 
-use AvtoDev\B2BApi\Clients\v1\Client;
-use AvtoDev\B2BApi\Exceptions\B2BApiException;
-use AvtoDev\B2BApi\Exceptions\B2BApiInvalidArgumentException;
-use AvtoDev\B2BApi\References\QueryTypes;
-use AvtoDev\B2BApi\Responses\DataTypes\Report\ReportData;
-use AvtoDev\B2BApi\Responses\DataTypes\Report\ReportStatusData;
 use AvtoDev\B2BApi\Tokens\AuthToken;
-use AvtoDev\B2BApiLaravel\Exceptions\B2BApiServiceException;
-use AvtoDev\B2BApiLaravel\Exceptions\InvalidReportTypeException;
-use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypeInterface;
-use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypesRepository;
-use AvtoDev\B2BApiLaravel\Traits\InstanceableTrait;
+use AvtoDev\B2BApi\Clients\v1\Client;
 use Illuminate\Foundation\Application;
+use AvtoDev\B2BApi\References\QueryTypes;
+use AvtoDev\B2BApi\Exceptions\B2BApiException;
+use AvtoDev\B2BApiLaravel\Traits\InstanceableTrait;
+use AvtoDev\B2BApi\Responses\DataTypes\Report\ReportData;
+use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypeInterface;
+use AvtoDev\B2BApiLaravel\Exceptions\B2BApiServiceException;
+use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypesRepository;
+use AvtoDev\B2BApi\Exceptions\B2BApiInvalidArgumentException;
+use AvtoDev\B2BApi\Responses\DataTypes\Report\ReportStatusData;
+use AvtoDev\B2BApiLaravel\Exceptions\InvalidReportTypeException;
 
 /**
  * Клиент, реализующий работу с B2B API.
