@@ -121,6 +121,7 @@ class B2BApiService
      * @param string                          $query_type  Тип идентификатора запрашиваемой сущности
      * @param string                          $query_id    Идентификатор запрашиваемой сущности (VIN, GRZ и так далее)
      * @param ReportTypeInterface|string|null $report_type UID типа отчета либо его **имя** (из конфигурации)
+     * @param bool                            $is_force    Нужно ли перегенерировать отчет если он уже существует?
      *
      * @throws B2BApiServiceException
      * @throws B2BApiInvalidArgumentException
@@ -128,7 +129,7 @@ class B2BApiService
      *
      * @return ReportStatusData
      */
-    public function makeReport($query_type, $query_id, $report_type = null)
+    public function makeReport($query_type, $query_id, $report_type = null, $is_force = false)
     {
         // Если методу передан пустой $report_type, то пытаемся извлечь ReportType из репозитория, который установлен
         // по как используемый по умолчанию
@@ -144,7 +145,8 @@ class B2BApiService
             $this->generateAuthToken(),
             $query_type,
             $query_id,
-            $this->getReportTypeUid($report_type)
+            $this->getReportTypeUid($report_type),
+            $is_force
         );
 
         if (($status = $response->data()->first()) && $status instanceof ReportStatusData) {
