@@ -28,26 +28,6 @@ abstract class AbstractUnitTestCase extends BaseTestCase
     }
 
     /**
-     * @param Application $app
-     *
-     * @return ConfigRepository
-     */
-    protected function getConfigRepository(Application $app)
-    {
-        return $app->make('config');
-    }
-
-    /**
-     * Assert value is float.
-     *
-     * @param $value
-     */
-    protected function assertIsFloat($value)
-    {
-        $this->assertTrue(is_float($value), 'Value has not float type');
-    }
-
-    /**
      * Calls a instance method (public/private/protected) by its name.
      *
      * @param object $object
@@ -66,5 +46,25 @@ abstract class AbstractUnitTestCase extends BaseTestCase
         $method->setAccessible(true);
 
         return $method->invokeArgs($object, $args);
+    }
+
+    /**
+     * @param Application $app
+     *
+     * @return ConfigRepository
+     */
+    protected function getConfigRepository(Application $app)
+    {
+        return $app->make('config');
+    }
+
+    /**
+     * Assert value is float.
+     *
+     * @param $value
+     */
+    protected function assertIsFloat($value)
+    {
+        $this->assertTrue(is_float($value), 'Value has not float type');
     }
 }
