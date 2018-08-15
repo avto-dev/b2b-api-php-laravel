@@ -102,8 +102,8 @@ return [
      */
     'webhooks'     => [
         'on' => [
-            'complete' => null,
-            'update'   => null,
+            'complete' => env('B2B_API_WEBHOOK_ON_COMPLETE', null),
+            'update'   => env('B2B_API_WEBHOOK_ON_UPDATE', null),
         ],
     ],
 
