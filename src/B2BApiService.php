@@ -160,27 +160,6 @@ class B2BApiService
     }
 
     /**
-     * Генерирует набор опций, отправляемых вместе с запросами, отвечающий за указание webhook-ов.
-     *
-     * @return array|array[]
-     */
-    protected function generateWebHooksOptions()
-    {
-        /** @var ConfigRepository $config */
-        $config = $this->app->make('config');
-        $root   = B2BApiServiceProvider::getConfigRootKeyName();
-
-        $options = [
-            'webhook' => array_filter([
-                'on_complete' => $config->get("$root.webhooks.on.complete"),
-                'on_update'   => $config->get("$root.webhooks.on.update"),
-            ]),
-        ];
-
-        return $options;
-    }
-
-    /**
      * Генерирует новый токен авторизации на сервисе B2B API.
      *
      * @param int      $age       Время жизни токена (unix-time, в секундах)
@@ -278,5 +257,26 @@ class B2BApiService
         }
 
         throw new B2BApiServiceException(sprintf('Invalid response type: "%s"', get_class($report)));
+    }
+
+    /**
+     * Генерирует набор опций, отправляемых вместе с запросами, отвечающий за указание webhook-ов.
+     *
+     * @return array|array[]
+     */
+    protected function generateWebHooksOptions()
+    {
+        /** @var ConfigRepository $config */
+        $config = $this->app->make('config');
+        $root   = B2BApiServiceProvider::getConfigRootKeyName();
+
+        $options = [
+            'webhook' => array_filter([
+                'on_complete' => $config->get("$root.webhooks.on.complete"),
+                'on_update'   => $config->get("$root.webhooks.on.update"),
+            ]),
+        ];
+
+        return $options;
     }
 }
