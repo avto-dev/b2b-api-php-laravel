@@ -13,11 +13,21 @@ use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 class B2BApiServiceProvider extends IlluminateServiceProvider
 {
     /**
-     * Возвращает путь до файла-конфигурации пакета.
+     * Возвращает путь до файла-конфигурации пакета (данный метод можно переопределять).
      *
      * @return string
      */
     public static function getConfigFilePath()
+    {
+        return __DIR__ . '/../config/b2b-api-client.php';
+    }
+
+    /**
+     * Возвращает путь до файла-конфигурации текущего пакета (не переопределяемый).
+     *
+     * @return string
+     */
+    private static function getBasicConfigFilePath()
     {
         return __DIR__ . '/../config/b2b-api-client.php';
     }
@@ -65,7 +75,15 @@ class B2BApiServiceProvider extends IlluminateServiceProvider
      */
     protected function initializeConfigs()
     {
-        $this->mergeConfigFrom(static::getConfigFilePath(), static::getConfigRootKeyName());
+        $package = static::getConfigFilePath();
+        $basic   = static::getBasicConfigFilePath();
+        $root    = static::getConfigRootKeyName();
+
+        $this->mergeConfigFrom($basic, $root);
+
+        if ($basic !== $package) {
+            $this->mergeConfigFrom($package, $root);
+        }
     }
 
     /**

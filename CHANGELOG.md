@@ -8,7 +8,11 @@ The format is based on [Keep a Changelog] and this project adheres to [Semantic 
 
 ### Added
 
-- Config settings for manage web-hooks.
+- Config settings for manage web-hooks
+
+### Fixed
+
+- Configs merging (if package overridden by another package)
 
 ## [v2.2.0] - 2018-06-28
 
