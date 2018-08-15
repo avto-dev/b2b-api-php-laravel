@@ -108,7 +108,7 @@ class B2BApiServiceTest extends AbstractUnitTestCase
             $this->instance->getReportTypeUid('%some_report_type_uid_here%')
         );
 
-        $report_type = new ReportType();
+        $report_type = new ReportType;
         $report_type->setUid('aaa');
         $this->assertEquals(
             'aaa',
@@ -144,5 +144,28 @@ class B2BApiServiceTest extends AbstractUnitTestCase
         $this->assertInstanceOf(ReportStatusData::class, $this->instance->refreshReport(
             'default'
         ));
+    }
+
+    /**
+     * Тест метода `generateWebHooksOptions()`.
+     */
+    public function testGenerateWebHooksOptions()
+    {
+        $this->assertEquals(['webhook' => []], $this->callMethod($this->instance, 'generateWebHooksOptions'));
+
+        $this->app->make('config')->set(
+            'b2b-api-client.webhooks.on.complete',
+            $on_complete = 'http://google.com/hook?foo=bar&bar=baz1'
+        );
+
+        $this->app->make('config')->set(
+            'b2b-api-client.webhooks.on.update',
+            $on_update = 'http://yandex.ru/hook?foo=bar1&bar=baz'
+        );
+
+        $this->assertEquals(['webhook' => [
+            'on_complete' => $on_complete,
+            'on_update'   => $on_update,
+        ]], $this->callMethod($this->instance, 'generateWebHooksOptions'));
     }
 }

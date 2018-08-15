@@ -46,4 +46,25 @@ abstract class AbstractUnitTestCase extends BaseTestCase
     {
         $this->assertTrue(is_float($value), 'Value has not float type');
     }
+
+    /**
+     * Calls a instance method (public/private/protected) by its name.
+     *
+     * @param object $object
+     * @param string $method_name
+     * @param array  $args
+     *
+     * @throws \ReflectionException
+     *
+     * @return mixed
+     */
+    public function callMethod($object, $method_name, array $args = [])
+    {
+        $class  = new \ReflectionClass($object);
+
+        $method = $class->getMethod($method_name);
+        $method->setAccessible(true);
+
+        return $method->invokeArgs($object, $args);
+    }
 }

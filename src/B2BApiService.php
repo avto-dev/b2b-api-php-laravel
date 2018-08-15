@@ -14,6 +14,7 @@ use AvtoDev\B2BApiLaravel\Exceptions\B2BApiServiceException;
 use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypesRepository;
 use AvtoDev\B2BApi\Exceptions\B2BApiInvalidArgumentException;
 use AvtoDev\B2BApi\Responses\DataTypes\Report\ReportStatusData;
+use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use AvtoDev\B2BApiLaravel\Exceptions\InvalidReportTypeException;
 
 /**
@@ -60,6 +61,7 @@ class B2BApiService
         'domain'       => null,
         'username'     => null,
         'password'     => null,
+        'webhooks'     => null,
         'is_test'      => false,
     ];
 
@@ -146,7 +148,8 @@ class B2BApiService
             $query_type,
             $query_id,
             $this->getReportTypeUid($report_type),
-            $is_force
+            $is_force,
+            $this->generateWebHooksOptions()
         );
 
         if (($status = $response->data()->first()) && $status instanceof ReportStatusData) {
@@ -154,6 +157,27 @@ class B2BApiService
         }
 
         throw new B2BApiServiceException(sprintf('Invalid response type: "%s"', get_class($status)));
+    }
+
+    /**
+     * Генерирует набор опций, отправляемых вместе с запросами, отвечающий за указание webhook-ов.
+     *
+     * @return array|array[]
+     */
+    protected function generateWebHooksOptions()
+    {
+        /** @var ConfigRepository $config */
+        $config = $this->app->make('config');
+        $root   = B2BApiServiceProvider::getConfigRootKeyName();
+
+        $options = [
+            'webhook' => array_filter([
+                'on_complete' => $config->get("$root.webhooks.on.complete"),
+                'on_update'   => $config->get("$root.webhooks.on.update"),
+            ]),
+        ];
+
+        return $options;
     }
 
     /**
@@ -243,7 +267,11 @@ class B2BApiService
      */
     public function refreshReport($report_uid)
     {
-        $response = $this->client->user()->report()->refresh($this->generateAuthToken(), $report_uid);
+        $response = $this->client->user()->report()->refresh(
+            $this->generateAuthToken(),
+            $report_uid,
+            $this->generateWebHooksOptions()
+        );
 
         if (($report = $response->data()->first()) && $report instanceof ReportStatusData) {
             return $report;
