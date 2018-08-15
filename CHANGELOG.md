@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog] and this project adheres to [Semantic Versioning].
 
+## [v2.3.0] - 2018-08-15
+
+### Added
+
+- Config settings for manage web-hooks
+
+### Fixed
+
+- Configs merging (if package overridden by another package)
+
 ## [v2.2.0] - 2018-06-28
 
 ### Added
@@ -25,6 +35,7 @@ The format is based on [Keep a Changelog] and this project adheres to [Semantic 
 - Disabled HTML coverage report (CI errors)
 - Unimportant PHPDoc blocks removed
 
+[v2.3.0]: https://github.com/avto-dev/b2b-api-php-laravel/compare/v2.2.0...v2.3.0
 [v2.2.0]: https://github.com/avto-dev/b2b-api-php-laravel/compare/v2.1.0...v2.2.0
 [v2.1.0]: https://github.com/avto-dev/b2b-api-php-laravel/compare/v2.0.12...v2.1.0
 
