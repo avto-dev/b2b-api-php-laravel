@@ -65,15 +65,7 @@ class B2BApiServiceProvider extends IlluminateServiceProvider
      */
     protected function initializeConfigs()
     {
-        $package = static::getConfigFilePath();
-        $basic   = static::getBasicConfigFilePath();
-        $root    = static::getConfigRootKeyName();
-
-        $this->mergeConfigFrom($basic, $root);
-
-        if ($basic !== $package) {
-            $this->mergeConfigFrom($package, $root);
-        }
+        $this->mergeConfigFrom(static::getConfigFilePath(), static::getConfigRootKeyName());
     }
 
     /**
@@ -132,15 +124,5 @@ class B2BApiServiceProvider extends IlluminateServiceProvider
         });
 
         $this->app->bind('b2b-api.service', B2BApiService::class);
-    }
-
-    /**
-     * Возвращает путь до файла-конфигурации текущего пакета (не переопределяемый).
-     *
-     * @return string
-     */
-    private static function getBasicConfigFilePath()
-    {
-        return __DIR__ . '/../config/b2b-api-client.php';
     }
 }
