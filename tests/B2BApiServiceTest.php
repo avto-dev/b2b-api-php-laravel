@@ -151,7 +151,7 @@ class B2BApiServiceTest extends AbstractUnitTestCase
      */
     public function testGenerateWebHooksOptions()
     {
-        $this->assertEquals(['webhook' => []], $this->callMethod($this->instance, 'generateWebHooksOptions'));
+        $this->assertEquals(['webhook' => (object) []], $this->callMethod($this->instance, 'generateWebHooksOptions'));
 
         $this->app->make('config')->set(
             'b2b-api-client.webhooks.on.complete',
@@ -163,7 +163,7 @@ class B2BApiServiceTest extends AbstractUnitTestCase
             $on_update = 'http://yandex.ru/hook?foo=bar1&bar=baz'
         );
 
-        $this->assertEquals(['webhook' => [
+        $this->assertEquals(['webhook' => (object) [
             'on_complete' => $on_complete,
             'on_update'   => $on_update,
         ]], $this->callMethod($this->instance, 'generateWebHooksOptions'));

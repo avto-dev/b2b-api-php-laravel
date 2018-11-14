@@ -271,7 +271,7 @@ class B2BApiService
         $root   = B2BApiServiceProvider::getConfigRootKeyName();
 
         $options = [
-            'webhook' => array_filter([
+            'webhook' => (object) array_filter([
                 'on_complete' => $config->get("$root.webhooks.on.complete"),
                 'on_update'   => $config->get("$root.webhooks.on.update"),
             ]),
