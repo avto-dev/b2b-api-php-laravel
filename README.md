@@ -95,9 +95,9 @@ $ ./artisan vendor:publish --provider="App\Providers\B2BApiServiceProvider"
  
 Более подробную информацию о том, как можно использовать слушателей событий вы можете найти по [этой ссылке][laravel_events].
 
-## Тестирование
+### Testing
 
-Для тестирования данного пакета используется фреймворк `phpunit`. Для запуска тестов выполните в терминале:
+For package testing we use `phpunit` framework. Just write into your terminal:
 
 ```shell
 $ git clone git@github.com:avto-dev/b2b-api-php-laravel.git ./b2b-api-php-laravel && cd $_
@@ -105,22 +105,23 @@ $ composer install
 $ composer test
 ```
 
-## Поддержка и развитие
-
-Если у вас возникли какие-либо проблемы по работе с данным пакетом, пожалуйста, создайте соответствующий `issue` в данном репозитории.
-
-> Имейте в виду, что если проблемы связаны с работой B2B API клиента (а не сервиса по работе с ним) - необходимо создать `issue` в его репозитории по [данной ссылке][b2b_api_client].
-
-Если вы способны самостоятельно реализовать тот функционал, что вам необходим - создайте PR с соответствующими изменениями. Крайне желательно сопровождать PR соответствующими тестами, фиксирующими работу ваших изменений. После проверки и принятия изменений будет опубликована новая минорная версия.
-
 ## Changes log
 
 [![Release date][badge_release_date]][link_releases]
 [![Commits since latest release][badge_commits_since_release]][link_commits]
-  
-## Лицензирование
 
-Код данного пакета распространяется под лицензией [MIT][link_license].
+Changes log can be [found here][link_changes_log].
+
+## Support
+
+[![Issues][badge_issues]][link_issues]
+[![Issues][badge_pulls]][link_pulls]
+
+If you will find any package errors, please, [make an issue][link_create_issue] in current repository.
+
+## License
+
+This is open-sourced software licensed under the [MIT License][link_license].
 
 [badge_packagist_version]:https://img.shields.io/packagist/v/avto-dev/b2b-api-php-laravel.svg?maxAge=180
 [badge_php_version]:https://img.shields.io/packagist/php-v/avto-dev/b2b-api-php-laravel.svg?longCache=true
