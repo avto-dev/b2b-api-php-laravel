@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog] and this project adheres to [Semantic Versioning].
 
-## v2.4.0
+## v2.5.0
 
 ### Changed
 
@@ -15,6 +15,14 @@ The format is based on [Keep a Changelog] and this project adheres to [Semantic 
 
 [travis]:https://travis-ci.org/
 [codecov]:https://codecov.io/
+
+## v2.4.0
+
+### Fixed
+
+- Return type of `webhook` option has type object [#6]
+
+[#6]: https://github.com/avto-dev/b2b-api-php-laravel/issues/6
 
 ## v2.3.0
 
