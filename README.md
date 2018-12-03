@@ -8,7 +8,7 @@
 [![Version][badge_php_version]][link_packagist]
 [![Build Status][badge_build_status]][link_build_status]
 [![Coverage][badge_coverage]][link_coverage]
-[![Code quality][badge_code_quality]][link_coverage]
+[![Code quality][badge_code_quality]][link_code_quality]
 [![Downloads count][badge_downloads_count]][link_packagist]
 [![License][badge_license]][link_license]
 
@@ -101,7 +101,7 @@ $ ./artisan vendor:publish --provider="App\Providers\B2BApiServiceProvider"
 
 ```shell
 $ git clone git@github.com:avto-dev/b2b-api-php-laravel.git ./b2b-api-php-laravel && cd $_
-$ composer update --dev
+$ composer install
 $ composer test
 ```
 
@@ -122,28 +122,28 @@ $ composer test
 
 Код данного пакета распространяется под лицензией [MIT][link_license].
 
-[badge_php_version]:https://img.shields.io/packagist/php-v/avto-dev/b2b-api-php-laravel.svg?style=flat-square&longCache=true
+[badge_packagist_version]:https://img.shields.io/packagist/v/avto-dev/b2b-api-php-laravel.svg?maxAge=180
+[badge_php_version]:https://img.shields.io/packagist/php-v/avto-dev/b2b-api-php-laravel.svg?longCache=true
+[badge_build_status]:https://travis-ci.org/avto-dev/b2b-api-php-laravel.svg?branch=master
+[badge_code_quality]:https://img.shields.io/scrutinizer/g/avto-dev/b2b-api-php-laravel.svg?maxAge=180
+[badge_coverage]:https://img.shields.io/codecov/c/github/avto-dev/b2b-api-php-laravel/master.svg?maxAge=60
+[badge_downloads_count]:https://img.shields.io/packagist/dt/avto-dev/b2b-api-php-laravel.svg?maxAge=180
+[badge_license]:https://img.shields.io/packagist/l/avto-dev/b2b-api-php-laravel.svg?longCache=true
 [badge_release_date]:https://img.shields.io/github/release-date/avto-dev/b2b-api-php-laravel.svg?style=flat-square&maxAge=180
 [badge_commits_since_release]:https://img.shields.io/github/commits-since/avto-dev/b2b-api-php-laravel/latest.svg?style=flat-square&maxAge=180
+[badge_issues]:https://img.shields.io/github/issues/avto-dev/b2b-api-php-laravel.svg?style=flat-square&maxAge=180
 [badge_pulls]:https://img.shields.io/github/issues-pr/avto-dev/b2b-api-php-laravel.svg?style=flat-square&maxAge=180
 [link_releases]:https://github.com/avto-dev/b2b-api-php-laravel/releases
+[link_packagist]:https://packagist.org/packages/avto-dev/b2b-api-php-laravel
+[link_build_status]:https://travis-ci.org/avto-dev/b2b-api-php-laravel
+[link_coverage]:https://codecov.io/gh/avto-dev/b2b-api-php-laravel/
 [link_changes_log]:https://github.com/avto-dev/b2b-api-php-laravel/blob/master/CHANGELOG.md
+[link_code_quality]:https://scrutinizer-ci.com/g/avto-dev/b2b-api-php-laravel/
+[link_issues]:https://github.com/avto-dev/b2b-api-php-laravel/issues
 [link_create_issue]:https://github.com/avto-dev/b2b-api-php-laravel/issues/new/choose
 [link_commits]:https://github.com/avto-dev/b2b-api-php-laravel/commits
 [link_pulls]:https://github.com/avto-dev/b2b-api-php-laravel/pulls
 [link_license]:https://github.com/avto-dev/b2b-api-php-laravel/blob/master/LICENSE
-[badge_packagist_version]:https://img.shields.io/packagist/v/avto-dev/b2b-api-php-laravel.svg?style=flat-square&maxAge=180
-[badge_downloads_count]:https://img.shields.io/packagist/dt/avto-dev/b2b-api-php-laravel.svg?style=flat-square&maxAge=180 
-[badge_license]:https://img.shields.io/packagist/l/avto-dev/b2b-api-php-laravel.svg?style=flat-square&longCache=true
-[badge_build_status]:https://img.shields.io/scrutinizer/build/g/avto-dev/b2b-api-php-laravel.svg?style=flat-square&maxAge=180&logo=scrutinizer
-[badge_coverage]:https://img.shields.io/scrutinizer/coverage/g/avto-dev/b2b-api-php-laravel.svg?style=flat-square&maxAge=180
-[badge_code_quality]:https://img.shields.io/scrutinizer/g/avto-dev/b2b-api-php-laravel.svg?style=flat-square&maxAge=180
-[badge_issues]:https://img.shields.io/github/issues/avto-dev/b2b-api-php-laravel.svg?style=flat-square&maxAge=180
-[link_packagist]:https://packagist.org/packages/avto-dev/b2b-api-php-laravel
-[link_license]:https://github.com/avto-dev/b2b-api-php-laravel/blob/master/LICENSE
-[link_build_status]:https://scrutinizer-ci.com/g/avto-dev/b2b-api-php-laravel/build-status/master
-[link_coverage]:https://scrutinizer-ci.com/g/avto-dev/b2b-api-php-laravel/?branch=master
-[link_issues]:https://github.com/avto-dev/b2b-api-php-laravel/issues
 [getcomposer]:https://getcomposer.org/download/
 [b2b_api_client]:https://github.com/avto-dev/b2b-api-php
-[laravel_events]:https://laravel.com/docs/5.5/events
+[laravel_events]:https://laravel.com/docs/5.6/events

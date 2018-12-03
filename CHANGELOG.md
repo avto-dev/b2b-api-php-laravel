@@ -4,19 +4,25 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog] and this project adheres to [Semantic Versioning].
 
-## [v2.4.0] - 2018-11-13
+## v2.4.0
 
-### Fixed
+### Changed
 
-- Return type of `webhook` option has type object [#6]
+- Maximal PHP version now is undefined
+- Maximal Laravel version now is `5.7.*`
+- CI changed to [Travis CI][travis]
+- [CodeCov][codecov] integrated
 
-## [v2.3.0] - 2018-08-15
+[travis]:https://travis-ci.org/
+[codecov]:https://codecov.io/
+
+## v2.3.0
 
 ### Added
 
 - Config settings for manage web-hooks
 
-## [v2.2.0] - 2018-06-28
+## v2.2.0
 
 ### Added
 
@@ -27,7 +33,9 @@ The format is based on [Keep a Changelog] and this project adheres to [Semantic 
 - Issues & PR templates
 - Update requirement avto-dev/b2b-api-php to version `2.3.0`
 
-## [v2.1.0] - 2018-06-10
+[#2]: https://github.com/avto-dev/b2b-api-php-laravel/issues/2
+
+## v2.1.0
 
 ### Changed
 
@@ -36,14 +44,6 @@ The format is based on [Keep a Changelog] and this project adheres to [Semantic 
 - Required minimal Laravel version now `5.4.3`
 - Disabled HTML coverage report (CI errors)
 - Unimportant PHPDoc blocks removed
-
-[v2.4.0]: https://github.com/avto-dev/b2b-api-php-laravel/compare/v2.3.0...eldario:some-fix
-[v2.3.0]: https://github.com/avto-dev/b2b-api-php-laravel/compare/v2.2.0...v2.3.0
-[v2.2.0]: https://github.com/avto-dev/b2b-api-php-laravel/compare/v2.1.0...v2.2.0
-[v2.1.0]: https://github.com/avto-dev/b2b-api-php-laravel/compare/v2.0.12...v2.1.0
-
-[#2]: https://github.com/avto-dev/b2b-api-php-laravel/issues/2
-[#6]: https://github.com/avto-dev/b2b-api-php-laravel/issues/6
 
 [Keep a Changelog]: http://keepachangelog.com/en/1.0.0/
 [Semantic Versioning]: http://semver.org/spec/v2.0.0.html
