@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog] and this project adheres to [Semantic Versioning].
 
-## v2.5.2
+## v2.6.0
 
 ### Added
 
