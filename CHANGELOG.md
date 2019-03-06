@@ -10,6 +10,8 @@ The format is based on [Keep a Changelog] and this project adheres to [Semantic 
 
 - Lumen support [#7]
 
+[#7]:https://github.com/avto-dev/b2b-api-php-laravel/issues/7
+
 ## v2.5.1
 
 ### Changed
@@ -34,7 +36,7 @@ The format is based on [Keep a Changelog] and this project adheres to [Semantic 
 
 - Return type of `webhook` option has type object [#6]
 
-[#6]: https://github.com/avto-dev/b2b-api-php-laravel/issues/6
+[#6]:https://github.com/avto-dev/b2b-api-php-laravel/issues/6
 
 ## v2.3.0
 
@@ -53,7 +55,7 @@ The format is based on [Keep a Changelog] and this project adheres to [Semantic 
 - Issues & PR templates
 - Update requirement avto-dev/b2b-api-php to version `2.3.0`
 
-[#2]: https://github.com/avto-dev/b2b-api-php-laravel/issues/2
+[#2]:https://github.com/avto-dev/b2b-api-php-laravel/issues/2
 
 ## v2.1.0
 
