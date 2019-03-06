@@ -2,9 +2,9 @@
 
 namespace AvtoDev\B2BApiLaravel;
 
+use Illuminate\Container\Container;
 use AvtoDev\B2BApi\Tokens\AuthToken;
 use AvtoDev\B2BApi\Clients\v1\Client;
-use Illuminate\Foundation\Application;
 use AvtoDev\B2BApi\References\QueryTypes;
 use AvtoDev\B2BApi\Exceptions\B2BApiException;
 use AvtoDev\B2BApiLaravel\Traits\InstanceableTrait;
@@ -25,7 +25,7 @@ class B2BApiService
     use InstanceableTrait;
 
     /**
-     * @var Application
+     * @var Container
      */
     protected $app;
 
@@ -68,10 +68,10 @@ class B2BApiService
     /**
      * B2BApiService constructor.
      *
-     * @param Application $app
-     * @param array       $config
+     * @param Container $app
+     * @param array     $config
      */
-    public function __construct(Application $app, $config = [])
+    public function __construct(Container $app, $config = [])
     {
         $this->app                     = $app;
         $this->config                  = \array_replace_recursive($this->config, (array) $config);

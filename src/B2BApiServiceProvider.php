@@ -2,7 +2,7 @@
 
 namespace AvtoDev\B2BApiLaravel;
 
-use Illuminate\Foundation\Application;
+use Illuminate\Container\Container;
 use Psr\Http\Message\ResponseInterface;
 use AvtoDev\B2BApiLaravel\Events\AfterRequestSending;
 use AvtoDev\B2BApiLaravel\Events\BeforeRequestSending;
@@ -75,7 +75,7 @@ class B2BApiServiceProvider extends IlluminateServiceProvider
      */
     protected function registerReportTypesRepository()
     {
-        $this->app->singleton(ReportTypesRepository::class, function (Application $app) {
+        $this->app->singleton(ReportTypesRepository::class, function (Container $app) {
             /** @var ConfigRepository $config */
             $config = $app->make('config');
 
@@ -102,7 +102,7 @@ class B2BApiServiceProvider extends IlluminateServiceProvider
      */
     protected function registerClientInstance()
     {
-        $this->app->singleton(B2BApiService::class, function (Application $app) {
+        $this->app->singleton(B2BApiService::class, function (Container $app) {
             /** @var ConfigRepository $config */
             $config = $app->make('config');
 

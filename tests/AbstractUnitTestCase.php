@@ -2,7 +2,7 @@
 
 namespace AvtoDev\B2BApiLaravel\Tests;
 
-use Illuminate\Foundation\Application;
+use Illuminate\Container\Container;
 use Illuminate\Contracts\Console\Kernel;
 use AvtoDev\B2BApiLaravel\B2BApiServiceProvider;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
@@ -13,7 +13,7 @@ abstract class AbstractUnitTestCase extends BaseTestCase
     /**
      * Creates the application.
      *
-     * @return Application
+     * @return Container
      */
     public function createApplication()
     {
@@ -49,11 +49,11 @@ abstract class AbstractUnitTestCase extends BaseTestCase
     }
 
     /**
-     * @param Application $app
+     * @param Container $app
      *
      * @return ConfigRepository
      */
-    protected function getConfigRepository(Application $app)
+    protected function getConfigRepository(Container $app)
     {
         return $app->make('config');
     }
