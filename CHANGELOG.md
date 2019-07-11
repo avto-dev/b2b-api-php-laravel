@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog] and this project adheres to [Semantic Versioning].
 
+## v2.7.0
+
+### Deprecated
+
+- Package is abandoned and soon will be completely removed. Migrate on [this package](https://github.com/avtocod/b2b-api-php-laravel)
+
 ## v2.6.0
 
 ### Added

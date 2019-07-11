@@ -20,6 +20,7 @@
         "ext-json": "*",
         "laravel/framework": ">=5.4.3 <5.8.0"
     },
+    "abandoned": "avtocod/b2b-api-php-laravel",
     "require-dev": {
         "laravel/laravel": ">=5.4.3 <5.8.0",
         "mockery/mockery": "0.9.* || ~1.0",

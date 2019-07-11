@@ -22,6 +22,8 @@ use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypesRepository;
  * @method static ReportType|null toReportType(string|array|array[]|object $some_value)
  *
  * @see ReportTypesRepository
+ *
+ * @deprecated This package is abandoned. Migrate to the package: <https://github.com/avtocod/b2b-api-php-laravel>
  */
 class ReportTypesRepositoryFacade extends Facade
 {

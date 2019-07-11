@@ -2,6 +2,16 @@
   <img src="https://laravel.com/assets/img/components/logo-laravel.svg" alt="Laravel" width="240" />
 </p>
 
+---
+
+# THIS PACKAGE IS ABANDONED
+
+Package is abandoned and soon will be completely removed. Migrate on [this package](https://github.com/avtocod/b2b-api-php-laravel).
+
+You **must** update your application soon as possible!
+
+---
+
 # Расширенный клиент для работы с B2B API
 
 [![Version][badge_packagist_version]][link_packagist]

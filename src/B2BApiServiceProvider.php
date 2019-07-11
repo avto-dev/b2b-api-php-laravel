@@ -10,6 +10,9 @@ use AvtoDev\B2BApiLaravel\ReportTypes\ReportTypesRepository;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 
+/**
+ * @deprecated This package is abandoned. Migrate to the package: <https://github.com/avtocod/b2b-api-php-laravel>
+ */
 class B2BApiServiceProvider extends IlluminateServiceProvider
 {
     /**

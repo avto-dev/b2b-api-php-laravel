@@ -18,7 +18,7 @@ use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use AvtoDev\B2BApiLaravel\Exceptions\InvalidReportTypeException;
 
 /**
- * Клиент, реализующий работу с B2B API.
+ * @deprecated This package is abandoned. Migrate to the package: <https://github.com/avtocod/b2b-api-php-laravel>
  */
 class B2BApiService
 {

@@ -6,6 +6,9 @@ use Traversable;
 use Illuminate\Support\Collection;
 use AvtoDev\B2BApiLaravel\Traits\InstanceableTrait;
 
+/**
+ * @deprecated This package is abandoned. Migrate to the package: <https://github.com/avtocod/b2b-api-php-laravel>
+ */
 class ReportTypesRepository extends Collection implements ReportTypesRepositoryInterface
 {
     use InstanceableTrait;

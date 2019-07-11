@@ -2,6 +2,9 @@
 
 namespace AvtoDev\B2BApiLaravel\Events;
 
+/**
+ * @deprecated This package is abandoned. Migrate to the package: <https://github.com/avtocod/b2b-api-php-laravel>
+ */
 class BeforeRequestSending extends AbstractRequestEvent
 {
     /**
