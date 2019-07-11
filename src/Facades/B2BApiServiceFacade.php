@@ -22,7 +22,6 @@ use AvtoDev\B2BApi\Responses\DataTypes\Report\ReportStatusData;
  * @method static null|string getReportTypeUid()
  *
  * @see B2BApiService
- *
  * @deprecated This package is abandoned. Migrate to the package: <https://github.com/avtocod/b2b-api-php-laravel>
  */
 class B2BApiServiceFacade extends Facade
